@@ -2,13 +2,20 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  lang: "en-US",
   title: "Billmora",
-  description: "A VitePress Site",
+  description: "Stop paying for billing software. Billmora automate your hosting operations — invoicing, provisioning, and recurring billing — completely free.",
+  head: [
+    [
+      'link', { rel: 'icon', href: 'https://media.billmora.com/logo/main-bgnone.svg' }
+    ]
+  ],
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
+    logo: 'https://media.billmora.com/logo/main-bgnone.png',
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Examples', link: '/markdown-examples' }
+      { text: 'Marketplace', link: 'https://market.billmora.com' }
     ],
 
     sidebar: [
@@ -22,7 +29,9 @@ export default defineConfig({
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
+      { icon: 'github', link: 'https://github.com/Billmora/billmora' },
+      { icon: 'discord', link: 'https://dsc.gg/billmora' }
     ]
-  }
+  },
+  cleanUrls: true,
 })
