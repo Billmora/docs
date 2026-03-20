@@ -1,4 +1,6 @@
 :root {
+  --vp-font-family-base: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+
   --vp-c-brand-1: #7267EF; /* base */
   --vp-c-brand-2: #5E54D6; /* darker */
   --vp-c-brand-3: #8A80FF; /* lighter */
