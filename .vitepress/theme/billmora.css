@@ -1,0 +1,12 @@
+:root {
+  --vp-c-brand-1: #7267EF; /* base */
+  --vp-c-brand-2: #5E54D6; /* darker */
+  --vp-c-brand-3: #8A80FF; /* lighter */
+}
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
