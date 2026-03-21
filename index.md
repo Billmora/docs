@@ -12,7 +12,7 @@ hero:
   actions:
     - theme: brand
       text: Get Started
-      link: /getting-started
+      link: /docs/introduction
     - theme: alt
       text: Demo
       link: https://demo.billmora.com
