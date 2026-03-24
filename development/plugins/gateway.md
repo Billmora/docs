@@ -80,7 +80,7 @@ Use the `getConfigSchema()` method to define the credentials your gateway requir
 
 ::: tip Schema Documentation
 Billmora supports an extensive library of UI components (Selects, Toggles, Radios, Checkboxes, etc.). 
-Please read the [**Plugin Reference Schema Guide**](./schema.md) to see the full list of supported fields and properties.
+Please read the [**Plugin Reference Schema Guide**](./reference/schema.md) to see the full list of supported fields and properties.
 :::
 
 ```php
@@ -390,7 +390,7 @@ These two flags serve different purposes:
 If your gateway plugin requires its own database tables, place migrations in `database/migrations/`. All tables **must** use the `pg_` prefix.
 
 ::: tip
-See the [**Plugin Conventions & Standards**](./conventions.md#_4-database-migrations) guide for full details on table prefixes, migration naming, and model configuration.
+See the [**Plugin Conventions & Standards**](./reference/conventions.md#_4-database-migrations) guide for full details on table prefixes, migration naming, and model configuration.
 :::
 
 ---
