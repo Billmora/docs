@@ -59,7 +59,26 @@ export default defineConfig({
             { text: 'Provisioning', link: '/development/plugins/provisioning' },
             { text: 'Module', link: '/development/plugins/module' },
           ]
-        }
+        },
+        {
+          text: 'Themes',
+          items: [
+            {
+              text: 'Reference',
+              collapsed: true,
+              items: [
+                { text: 'Conventions', link: '/development/themes/reference/conventions' },
+                { text: 'Vite Config', link: '/development/themes/reference/vite-config' },
+                { text: 'Configure', link: '/development/themes/reference/config' },
+              ]
+            },
+            { text: 'Admin', link: '/development/themes/admin' },
+            { text: 'Client', link: '/development/themes/client' },
+            { text: 'Portal', link: '/development/themes/portal' },
+            { text: 'Email', link: '/development/themes/email' },
+            { text: 'Invoice', link: '/development/themes/invoice' },
+          ]
+        },
       ],
     },
 
