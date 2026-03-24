@@ -2,27 +2,71 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  lang: "en-US",
   title: "Billmora",
-  description: "Official documentation for Billmora",
+  description: "Stop paying for billing software. Billmora automate your hosting operations — invoicing, provisioning, and recurring billing — completely free.",
+  head: [
+    [
+      'link', { rel: 'icon', href: 'https://media.billmora.com/logo/main-bgnone.svg' }
+    ]
+  ],
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
+    logo: 'https://media.billmora.com/logo/main-bgnone.png',
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Examples', link: '/markdown-examples' }
+      { text: 'Docs', link: '/docs/introduction' },
+      { text: 'Development', link: '/development/introduction' },
+      { text: 'Marketplace', link: '#' }
     ],
 
-    sidebar: [
-      {
-        text: 'Examples',
-        items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
-        ]
-      }
-    ],
+    sidebar: {
+      '/docs/': [
+        {
+          text: 'Getting Started',
+          items: [
+            { text: 'Introduction', link: '/docs/introduction' },
+          ]
+        },
+        {
+          text: 'Installation',
+          items: [
+            { text: 'Linux Server', link: '/docs/installation/linux-server' },
+            { text: 'Web Hosting', link: '/docs/installation/web-hosting' }
+          ]
+        }
+      ],
+      '/development/': [
+        {
+          text: 'Getting Started',
+          items: [
+            { text: 'Introduction', link: '/development/introduction' },
+          ]
+        },
+        {
+          text: 'Plugin',
+          items: [
+            {
+              text: 'Reference',
+              collapsed: true,
+              items: [
+                { text: 'Conventions', link: '/development/plugins/reference/conventions' },
+                { text: 'Schema', link: '/development/plugins/reference/schema' },
+                { text: 'Events', link: '/development/plugins/reference/events' },
+              ]
+            },
+            { text: 'Gateway', link: '/development/plugins/gateway' },
+            { text: 'Provisioning', link: '/development/plugins/provisioning' },
+            { text: 'Module', link: '/development/plugins/module' },
+          ]
+        }
+      ],
+    },
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
+      { icon: 'github', link: 'https://github.com/Billmora/billmora' },
+      { icon: 'discord', link: 'https://dsc.gg/billmora' }
     ]
-  }
+  },
+  cleanUrls: true,
 })
