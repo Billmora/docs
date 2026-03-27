@@ -11,6 +11,18 @@ export default defineConfig({
   head: [
     [
       'link', { rel: 'icon', href: 'https://media.billmora.com/logo/main-bgnone.svg' }
+    ],
+    [
+      'script',
+      { async: '', src: 'https://www.googletagmanager.com/gtag/js?id=G-N4GJBPSEJN' }
+    ],
+    [
+      'script',
+      {},
+      `window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-N4GJBPSEJN');`
     ]
   ],
   themeConfig: {
