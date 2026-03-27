@@ -94,16 +94,16 @@ export default defineConfig({
   lastUpdated: true,
   buildEnd: async ({ outDir }) => {
     const sitemap = new SitemapStream({ hostname: 'https://billmora.com/' })
-    const pages = await createContentLoader('*.md').load()
+    const pages = await createContentLoader('**/*.md').load()
     const writeStream = createWriteStream(resolve(outDir, 'sitemap.xml'))
 
     sitemap.pipe(writeStream)
     pages.forEach((page) => sitemap.write(
-      page.url
+        page.url
         .replace(/index$/g, '')
         .replace(/^\/docs/, '')
         .replace(/^\/development/, '')
-      ))
+    ))
     sitemap.end()
 
     await new Promise<void>((r) => writeStream.on('finish', () => r()))
