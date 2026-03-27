@@ -248,7 +248,7 @@ class MyController extends Controller
 ## Conclusion
 
 Following these conventions ensures your plugin integrates seamlessly with Billmora's core engine. For type-specific implementation details, refer to:
-- [**Gateway Plugin Development**](./gateway.md)
-- [**Provisioning Plugin Development**](./provisioning.md)
-- [**Module Plugin Development**](./module.md)
+- [**Gateway Plugin Development**](./../gateway.md)
+- [**Provisioning Plugin Development**](./../provisioning.md)
+- [**Module Plugin Development**](./../module.md)
 - [**Schema Engine Reference**](./schema.md)
