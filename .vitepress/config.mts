@@ -106,7 +106,7 @@ export default defineConfig({
       ))
     sitemap.end()
 
-    await new Promise((r) => writeStream.on('finish', r))
+    await new Promise<void>((r) => writeStream.on('finish', () => r()))
   },
   transformHead: ({ pageData }) => {
     const head: HeadConfig[] = []
