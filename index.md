@@ -18,22 +18,22 @@ hero:
       link: https://demo.billmora.com
 
 features:
+  - icon: 🔌
+    title: Plugin-Based Provisioning
+    details: Extend and manage server provisioning through an isolated plugin system supporting multiple control panels.
   - icon: 🧾
-    title: Automated Billing & Invoicing
-    details: Create invoices, charge clients, and handle recurring payments automatically.
-  - icon: ⚡
-    title: Instant Server Provisioning
-    details: Auto-provision hosting accounts on DirectAdmin, cPanel, Pterodactyl, and more.
-  - icon: 🔄
-    title: Recurring Automation
-    details: Automate renewals, reminders, and service suspensions with ease.
-  - icon: 👥
-    title: Client Management 
-    details: Manage clients, services, and transactions in one simple dashboard.
-  - icon: 💳
-    title: Multiple Payment Gateways
-    details: Accept payments through various gateways with global flexibility.
-  - icon: 🔓
-    title: Free & Open-Source
-    details: No licenses or limits — fully customizable and self-hosted.
+    title: Billing, Invoicing & Orders
+    details: Handle the full billing lifecycle — from checkout and orders to recurring invoices, credit wallet, and coupons.
+  - icon: ⚙️
+    title: Automation Engine
+    details: Automate renewals, suspensions, terminations, invoice reminders, and ticket closures on a fully scheduled engine.
+  - icon: 🎫
+    title: Support Ticket System
+    details: Built-in helpdesk with departments, email piping, file attachments, and auto-closure for inactive tickets.
+  - icon: 💱
+    title: Multi-Currency & Tax Management
+    details: Support global operations with multi-currency pricing, region-based tax rates, and a client credit wallet.
+  - icon: 🔐
+    title: Security, Roles & Audit Logs
+    details: Granular role permissions, two-factor authentication, and comprehensive audit trails across all platform activity.
 ---
