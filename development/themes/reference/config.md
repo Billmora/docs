@@ -25,19 +25,19 @@ This file serves as a standalone view loaded within the Admin context. It must c
 
 Data submitted by this form is serialized into the `config` JSON column of the database theme record.
 
-Inside the `config.blade.php` form itself, you must retrieve previously saved values using the active theme model property: `$theme->config['key']`. 
+Inside the `config.blade.php` form itself, you must retrieve previously saved values using the active theme model property: `$theme->config['key']`.
 
-However, in your actual **frontend theme views** (such as `views/layouts/app.blade.php` or `views/index.blade.php`), you should access these configurations using Billmora's dedicated global helper functions. These helpers correspond directly to the specific type of theme you are building:
+However, in your actual **frontend theme views** (such as `views/layouts/app.blade.php` or `views/index.blade.php`), you should access these configurations using the globally shared configuration variables injected by `ThemeServiceProvider`. These variables correspond directly to the specific type of theme you are building:
 
-| Theme Type | Helper Function             | Example Usage |
-|------------|-----------------------------|---------------|
-| **Admin**  | `adminThemeConfig()`        | `$adminThemeConfig('primary_color', '#1f2937')` |
-| **Client** | `clientThemeConfig()`       | `$clientThemeConfig('hero_title', 'Welcome Back')` |
-| **Portal** | `portalThemeConfig()`       | `$portalThemeConfig('catalog_title')` |
-| **Email**  | `emailThemeConfig()`        | `$emailThemeConfig('footer_text', 'Default Footer')` |
-| **Invoice**| `invoiceThemeConfig()`      | `$invoiceThemeConfig('company_logo')` |
+| Theme Type  | Configuration Variable | Example Usage                                               |
+| ----------- | ---------------------- | ----------------------------------------------------------- |
+| **Admin**   | `$adminThemeConfig`    | `$adminThemeConfig['primary_color'] ?? '#1f2937'`           |
+| **Client**  | `$clientThemeConfig`   | `$clientThemeConfig['hero_title'] ?? 'Welcome Back'`        |
+| **Portal**  | `$portalThemeConfig`   | `$portalThemeConfig['catalog_title'] ?? 'Default Title'`    |
+| **Email**   | `$emailThemeConfig`    | `$emailThemeConfig['footer_text'] ?? 'Default Footer'`      |
+| **Invoice** | `$invoiceThemeConfig`  | `$invoiceThemeConfig['company_logo'] ?? 'default-logo.png'` |
 
-The first argument is your configuration `key` name, and the optional second argument establishes a fallback default value if the key does not exist.
+Use standard PHP array syntax and the null coalescing operator (`??`) to provide fallback default values if the key does not exist.
 
 ### Utilizing Components
 
@@ -46,7 +46,7 @@ When building your configuration page, you're entirely free to use custom raw HT
 For example, utilizing the `portal` or `client` component library for standardized form inputs:
 
 ```blade
-<x-portal::input 
+<x-portal::input
     name="catalog_title"
     label="Catalog Product Title"
     value="{{ old('catalog_title', $theme->config['catalog_title'] ?? '') }}"
@@ -61,4 +61,4 @@ For example, utilizing the `portal` or `client` component library for standardiz
 >{{ old('auth_message', $theme->config['auth_message'] ?? '') }}</x-client::textarea>
 ```
 
-For advanced dynamic configurations—such as live color-pickers demonstrating color scales—you can freely embed AlpineJS `x-data` blocks within this file (as seen in the core Moraine theme). 
+For advanced dynamic configurations—such as live color-pickers demonstrating color scales—you can freely embed AlpineJS `x-data` blocks within this file (as seen in the core Moraine theme).
