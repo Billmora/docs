@@ -1,3 +1,7 @@
+---
+title: Introduction
+description: Introduction to Billmora, a free, open-source Billing Management, Operation, and Recurring Automation platform for hosting providers.
+---
 # Introduction
 
 **Billmora** is a free, open-source Billing Management, Operation, and Recurring Automation platform built for hosting providers and service businesses.

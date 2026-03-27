@@ -1,3 +1,7 @@
+---
+title: Admin Theme Development
+description: Learn how to build custom admin themes to overhaul the look, feel, and dashboard interface of your Billmora installation.
+---
 # Admin Theme Development
 
 The admin theme powers the core dashboard, management interfaces, and settings of Billmora. By creating a custom admin theme, you can completely overhaul the look and feel of the back office without altering the core system files.

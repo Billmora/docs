@@ -1,3 +1,7 @@
+---
+title: Billmora Schema Engine
+description: A guide to Billmora's auto-rendering UI schema engine for dynamically building settings and forms via PHP arrays.
+---
 # Billmora Schema Engine
 
 Billmora features a robust, auto-rendering UI schema engine built deep into its core. Instead of manually writing HTML forms (`.blade.php`) every time you need to collect data or settings, you simply return a standardized PHP Array. 

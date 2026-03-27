@@ -1,3 +1,7 @@
+---
+title: Theme Conventions & Standards
+description: Universal standards and best practices for creating maintainable, conflict-free Billmora themes.
+---
 # Theme Conventions & Standards
 
 This guide documents the **universal conventions** that apply to all Billmora custom themes (Admin, Client, Portal, Email, Invoice). These rules ensure your custom themes are maintainable, conflict-free, and seamlessly integrate into the Billmora ecosystem.

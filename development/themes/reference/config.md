@@ -1,3 +1,7 @@
+---
+title: Theme Configuration Reference
+description: Learn how to add dynamic settings and configuration options to your Billmora custom themes via the Admin Panel.
+---
 # Theme Configuration Reference
 
 Themes in Billmora can offer administrators customizable settings (such as branding colors, hero text, and logos) dynamically from the dashboard, without ever needing to edit code. This is achieved by placing a `config.blade.php` file at the root of your theme folder.

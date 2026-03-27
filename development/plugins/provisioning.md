@@ -1,3 +1,7 @@
+---
+title: Provisioning Plugin Development
+description: Documentation on creating Provisioning plugins to integrate third-party service providers like game hosting and VPS into Billmora.
+---
 # Provisioning Plugin Development
 
 Billmora uses a **Lifecycle-Driven Architecture** for its provisioning ecosystem. Developing a Provisioning plugin allows you to integrate any third-party service provider (game hosting, web hosting, VPS, etc.) directly into Billmora.

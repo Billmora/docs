@@ -1,3 +1,7 @@
+---
+title: Gateway Plugin Development
+description: Guide for developing Gateway plugins to integrate third-party payment processors into Billmora's event-driven architecture.
+---
 # Gateway Plugin Development
 
 Billmora employs an enterprise-grade, **Event-Driven Architecture (EDA)** for its payment gateway ecosystem. Developing a Gateway plugin allows you to integrate any third-party payment processor directly into Billmora with minimal friction.

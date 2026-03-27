@@ -1,3 +1,7 @@
+---
+title: Web Hosting Installation
+description: Step-by-step guide to installing Billmora on web hosting control panels like cPanel, Plesk, and DirectAdmin.
+---
 # Web Hosting Installation
 
 This guide explains how to install Billmora on web hosting control panels such as **cPanel, DirectAdmin, Plesk, Webuzo, aaPanel**, or other shared/managed hosting environments. 

@@ -1,3 +1,7 @@
+---
+title: Development Guide
+description: Official Billmora Developer Documentation for extending capabilities with custom integrations, themes, and Event-Driven Architecture.
+---
 # Development Guide
 
 Welcome to the **Billmora Developer Documentation**! This section is dedicated to developers who want to extend Billmora's capabilities by building custom integrations, themes, or exploring our Event-Driven Architecture (EDA).

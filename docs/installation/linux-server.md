@@ -1,3 +1,7 @@
+---
+title: Linux Server Installation
+description: Recommended step-by-step guide for installing Billmora on a dedicated Linux server with NGINX, Apache, and Redis.
+---
 # Linux Server Installation
 
 This guide covers how to install Billmora on a dedicated Linux environment. This is the **recommended** way to run Billmora. 

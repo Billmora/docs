@@ -1,3 +1,7 @@
+---
+title: Email Theme Development
+description: Instructions on creating custom email themes to completely rebrand Billmora's transactional notifications and templates.
+---
 # Email Theme Development
 
 Billmora utilizes customized notification templates for system alerts, welcome emails, invoices, and payment confirmations. Creating a custom email theme allows you to rebrand the transactional communications entirely.

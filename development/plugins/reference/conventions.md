@@ -1,3 +1,7 @@
+---
+title: Plugin Conventions & Standards
+description: Universal conventions and standards required for building interoperable Billmora Gateway, Provisioning, and Module plugins.
+---
 # Plugin Conventions & Standards
 
 This guide documents the **universal conventions** that apply to all Billmora plugin types (Gateway, Provisioning, Module). These rules ensure consistency, prevent conflicts, and make plugins interoperable with Billmora's core engine.

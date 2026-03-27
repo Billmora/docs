@@ -1,3 +1,7 @@
+---
+title: Module Plugin Development
+description: Learn how to build Module plugins to extend Billmora's core functionality with custom pages, logic, and webhook integrations.
+---
 # Module Plugin Development
 
 Billmora uses an **Event-Driven Architecture (EDA)** for its module ecosystem. Developing a Module plugin allows you to extend Billmora's functionality with custom features — from simple webhook integrations to full-stack pages with their own database, controllers, and views.

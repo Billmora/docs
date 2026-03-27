@@ -1,3 +1,7 @@
+---
+title: Vite Configuration Reference
+description: Reference setup and explanation of vite.config.js for compiling assets in Billmora custom themes.
+---
 # Vite Configuration Reference
 
 When building a compiled theme for the `admin`, `client`, or `portal` areas, the `vite.config.js` file is responsible for wiring Tailwind CSS, Laravel Vite Plugin, and specifying where the compiled assets should be outputted.

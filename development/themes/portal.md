@@ -1,3 +1,7 @@
+---
+title: Portal Theme Development
+description: Guide on customizing the public-facing Portal theme, including storefront styling, announcement layouts, and knowledgebase design.
+---
 # Portal Theme Development
 
 The Portal acts as the public-facing storefront or landing environment for your Billmora installation, specifically designed for guest users to browse products, read announcements, or access the knowledgebase before logging in to the client area.

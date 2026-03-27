@@ -1,3 +1,7 @@
+---
+title: Client Theme Development
+description: Guide for developing custom client area themes to match Billmora to your exact brand identity.
+---
 # Client Theme Development
 
 The client area is where your customers log in, manage their services, and view their invoices. Customizing the client theme allows you to match Billmora perfectly to your brand identity.

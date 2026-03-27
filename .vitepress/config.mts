@@ -1,4 +1,4 @@
-import { createContentLoader, defineConfig } from 'vitepress'
+import { createContentLoader, defineConfig, HeadConfig } from 'vitepress'
 import { SitemapStream } from 'sitemap'
 import { createWriteStream } from 'node:fs'
 import { resolve } from 'node:path'
@@ -7,7 +7,7 @@ import { resolve } from 'node:path'
 export default defineConfig({
   lang: "en-US",
   title: "Billmora",
-  description: "Stop paying for billing software. Billmora automate your hosting operations — invoicing, provisioning, and recurring billing — completely free.",
+  description: "Billmora is a free, open-source alternative to WHMCS or Blesta. Automate billing, manage clients, and provision servers with DirectAdmin, cPanel, Pterodactyl, and more.",
   head: [
     [
       'link', { rel: 'icon', href: 'https://media.billmora.com/logo/main-bgnone.svg' }
@@ -107,5 +107,13 @@ export default defineConfig({
     sitemap.end()
 
     await new Promise((r) => writeStream.on('finish', r))
-  }
+  },
+  transformHead: ({ pageData }) => {
+    const head: HeadConfig[] = []
+
+    head.push(['meta', { property: 'og:title', content: pageData.frontmatter.title }])
+    head.push(['meta', { property: 'og:description', content: pageData.frontmatter.description }])
+    
+    return head
+  },
 })

@@ -1,3 +1,7 @@
+---
+title: Event Reference
+description: Comprehensive reference of system-wide events available for Module plugins to subscribe and react to in Billmora.
+---
 # Event Reference
 
 Billmora's core engine dispatches events at key moments throughout the application lifecycle. Module plugins can subscribe to these events via `getSubscribedEvents()` to react in real-time — without modifying any core code.
