@@ -46,9 +46,6 @@ apt install -y mariadb-server nginx tar unzip curl redis-server
 
 # Install Composer
 curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
-
-# Install Certbot for SSL (Optional but Recommended)
-apt install -y certbot python3-certbot-nginx python3-certbot-apache
 ```
 
 ---
@@ -63,8 +60,8 @@ Create the directory where Billmora will live, download the latest release, and 
 mkdir -p /var/www/billmora
 cd /var/www/billmora
 
-# Download the latest Beta pre-built release (Recommended for testing)
-curl -Lo billmora.tar.gz https://github.com/Billmora/billmora/releases/download/v0.6.0-beta.1/billmora.tar.gz
+# Download the latest pre-built release
+curl -Lo billmora.tar.gz https://github.com/Billmora/billmora/releases/latest/download/billmora.tar.gz
 
 # Extract the archive
 tar -xzvf billmora.tar.gz
@@ -186,6 +183,7 @@ nginx -t
 systemctl reload nginx
 
 # Run certbot to automatically provision and install the SSL certificate
+apt install -y certbot python3-certbot-nginx
 certbot --nginx -d billing.yourdomain.com
 ```
 :::
@@ -267,6 +265,7 @@ a2ensite billmora.conf
 systemctl restart apache2
 
 # Run certbot to automatically provision and install the SSL certificate
+apt install -y certbot python3-certbot-apache
 certbot --apache -d billing.yourdomain.com
 ```
 :::
