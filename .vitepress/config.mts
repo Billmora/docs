@@ -111,9 +111,12 @@ export default defineConfig({
   transformHead: ({ pageData }) => {
     const head: HeadConfig[] = []
 
-    head.push(['meta', { property: 'og:title', content: pageData.frontmatter.title }])
-    head.push(['meta', { property: 'og:description', content: pageData.frontmatter.description }])
-    
+    const title = pageData.frontmatter?.title
+    const description = pageData.frontmatter?.description
+
+    if (title) head.push(['meta', { property: 'og:title', content: title }])
+    if (description) head.push(['meta', { property: 'og:description', content: description }])
+
     return head
   },
 })
