@@ -22,7 +22,9 @@ export default defineConfig({
       { text: 'Development', link: '/development/introduction' },
       { text: 'Marketplace', link: '#' }
     ],
-
+    search: {
+      provider: 'local'
+    },
     sidebar: {
       '/docs/': [
         {
