@@ -129,7 +129,6 @@ Below is an overview of a fully configured Client theme, taking the core `morain
 │   │   └── index.blade.php
 │   ├── index.blade.php
 │   └── maintenance.blade.php
-├── config.blade.php
 ├── theme.json
 └── vite.config.js
 ```

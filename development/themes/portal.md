@@ -71,7 +71,6 @@ Below is an overview of a fully configured Portal theme, taking the core `morain
 │   │   ├── privacy.blade.php
 │   │   └── service.blade.php
 │   └── index.blade.php
-├── config.blade.php
 ├── theme.json
 └── vite.config.js
 ```
