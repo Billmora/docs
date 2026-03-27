@@ -1,4 +1,7 @@
-import { defineConfig } from 'vitepress'
+import { createContentLoader, defineConfig } from 'vitepress'
+import { SitemapStream } from 'sitemap'
+import { createWriteStream } from 'node:fs'
+import { resolve } from 'node:path'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -88,4 +91,21 @@ export default defineConfig({
     ]
   },
   cleanUrls: true,
+  lastUpdated: true,
+  buildEnd: async ({ outDir }) => {
+    const sitemap = new SitemapStream({ hostname: 'https://billmora.com/' })
+    const pages = await createContentLoader('*.md').load()
+    const writeStream = createWriteStream(resolve(outDir, 'sitemap.xml'))
+
+    sitemap.pipe(writeStream)
+    pages.forEach((page) => sitemap.write(
+      page.url
+        .replace(/index$/g, '')
+        .replace(/^\/docs/, '')
+        .replace(/^\/development/, '')
+      ))
+    sitemap.end()
+
+    await new Promise((r) => writeStream.on('finish', r))
+  }
 })
