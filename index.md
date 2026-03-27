@@ -4,8 +4,8 @@ layout: home
 
 hero:
   name: "Billmora"
-  text: "The Free, Open-Source Alternative to WHMCS"
-  tagline: Manage clients, automate billing, and provision servers — all without the licensing cost.
+  text: "Run Your Hosting Business. Pay Nothing."
+  tagline: Open-source billing management with automated provisioning, recurring automation, and full control — forever free.
   image:
       src: https://media.billmora.com/logo/main-bgnone.png
       alt: BillmoraLogo
