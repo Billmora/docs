@@ -10,6 +10,9 @@ export default defineConfig({
   description: "Billmora is a free, open-source alternative to WHMCS or Blesta. Automate billing, manage clients, and provision servers with DirectAdmin, cPanel, Pterodactyl, and more.",
   head: [
     [
+      'meta', { property: 'og:image', content: 'https://media.billmora.com/logo/main-bgnone.png' }
+    ],
+    [
       'link', { rel: 'icon', href: 'https://media.billmora.com/logo/main-bgnone.svg' }
     ],
     [
