@@ -13,7 +13,7 @@ This guide explains how to install Billmora on web hosting control panels such a
 
 Ensure your hosting environment provides the following:
 
-- **PHP** 8.2 or 8.3
+- **PHP** 8.3
 - **Web Server:** NGINX, Apache, or LiteSpeed
 - **Database:** MariaDB 10.4+ or MySQL 8.0+
 - **Terminal/SSH Access:** Highly recommended for running installation commands.
@@ -152,9 +152,9 @@ Set the command to:
 
 > [!TIP]
 > The absolute path to the PHP executable varies by panel and OS. 
-> - **cPanel / DirectAdmin:** Often `/usr/local/bin/php` or `/opt/cpanel/ea-php82/root/usr/bin/php`
-> - **Plesk:** Often `/opt/plesk/php/8.2/bin/php`
-> - **aaPanel:** Often `/www/server/php/82/bin/php`
+> - **cPanel / DirectAdmin:** Often `/usr/local/bin/php` or `/opt/cpanel/ea-php83/root/usr/bin/php`
+> - **Plesk:** Often `/opt/plesk/php/8.3/bin/php`
+> - **aaPanel:** Often `/www/server/php/83/bin/php`
 > 
 > If the cron job isn't firing, check with your hosting provider for the correct path to PHP CLI for your PHP version.
 

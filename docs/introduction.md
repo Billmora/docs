@@ -11,7 +11,7 @@ It acts as a self-hosted alternative to platforms like WHMCS or Blesta, giving y
 ## Tech Stack
 
 Billmora is built for performance and maintainability leveraging current technologies:
-- **Backend:** Laravel 12.x (PHP 8.2+)
+- **Backend:** Laravel 12.x (PHP 8.3+)
 - **Frontend Stack:** Laravel Blade, Livewire 3.x, AlpineJS, Tailwind CSS, Vite
 - **Database:** MySQL 8.0+ / MariaDB 10.4+ *(Fully tested & supported. PostgreSQL is experimental)*
 - **Background Jobs:** Laravel Queues (Redis strongly recommended, or Database)
