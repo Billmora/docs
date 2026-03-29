@@ -90,6 +90,7 @@ export default defineConfig({
                 { text: 'Conventions', link: '/development/themes/reference/conventions' },
                 { text: 'Vite Config', link: '/development/themes/reference/vite-config' },
                 { text: 'Configure', link: '/development/themes/reference/config' },
+                { text: 'Packaging', link: '/development/themes/reference/packaging' },
               ]
             },
             { text: 'Admin', link: '/development/themes/admin' },

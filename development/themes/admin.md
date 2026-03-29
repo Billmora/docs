@@ -2,6 +2,7 @@
 title: Admin Theme Development
 description: Learn how to build custom admin themes to overhaul the look, feel, and dashboard interface of your Billmora installation.
 ---
+
 # Admin Theme Development
 
 The admin theme powers the core dashboard, management interfaces, and settings of Billmora. By creating a custom admin theme, you can completely overhaul the look and feel of the back office without altering the core system files.
@@ -49,6 +50,15 @@ npx cross-env THEME=admin/mytheme vite dev
 
 Any Blade file you place inside the `views/` directory of your theme will strictly override the core Billmora view of the exact same name and path. For example, to override the admin dashboard view located at `resources/views/admin/dashboard.blade.php`, you would create:
 `/resources/themes/admin/mytheme/views/dashboard.blade.php`.
+
+## Distribution & Installation
+
+Once your admin theme is complete, you can package it into a ZIP file for distribution or installation on other Billmora instances via the **System > Themes** section of the Admin panel.
+
+> [!IMPORTANT]
+> The theme installer expects a specific ZIP file hierarchy. Most importantly, all public assets (CSS/JS) **must** be contained within an `assets/` folder in the ZIP.
+
+For a comprehensive guide on structuring your theme ZIP, refer to the [Packaging for Distribution](./reference/packaging.md) reference.
 
 ## Full File Structure
 

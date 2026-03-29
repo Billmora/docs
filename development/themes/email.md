@@ -2,6 +2,7 @@
 title: Email Theme Development
 description: Instructions on creating custom email themes to completely rebrand Billmora's transactional notifications and templates.
 ---
+
 # Email Theme Development
 
 Billmora utilizes customized notification templates for system alerts, welcome emails, invoices, and payment confirmations. Creating a custom email theme allows you to rebrand the transactional communications entirely.
@@ -34,6 +35,12 @@ When designing your email `views/`, you should use standard HTML `style="..."` a
 ## Overriding Views
 
 Place custom Blade files inside the `views/` directory that mirror the relative path of the core email notifications. For example, to override the main layout wrapper, you would create `/resources/themes/email/mytheme/views/layout.blade.php`.
+
+## Distribution & Installation
+
+Once your email theme is ready, you can package it into a ZIP file for installation via the **System > Themes** section of the Admin panel.
+
+For details on how to correctly structure your theme ZIP for the installer, refer to the [Packaging for Distribution](./reference/packaging.md) guide.
 
 ## Full File Structure
 

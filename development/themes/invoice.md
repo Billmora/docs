@@ -2,6 +2,7 @@
 title: Invoice Theme Development
 description: How to develop an Invoice theme to customize PDF generation, layout, and styling for client invoices in Billmora.
 ---
+
 # Invoice Theme Development
 
 The Invoice theme controls the PDF generation and public web-view structure of client invoices. Customizing the invoice theme allows you to match payment documents exactly to your branding and regional compliance requirements.
@@ -51,6 +52,12 @@ You are fully supported to use `<style>` blocks with standard class-based CSS wi
 ## Overriding Views
 
 Copy the core invoice layout into your custom theme's `views/` directory (e.g., `/resources/themes/invoice/mytheme/views/invoice.blade.php`) and modify the HTML/CSS as required.
+
+## Distribution & Installation
+
+Once your invoice theme is complete, you can package it into a ZIP file for installation via the **System > Themes** section of the Admin panel.
+
+For a detailed guide on structuring your theme ZIP, refer to the [Packaging for Distribution](./reference/packaging.md) reference.
 
 ## Full File Structure
 

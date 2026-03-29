@@ -2,6 +2,7 @@
 title: Portal Theme Development
 description: Guide on customizing the public-facing Portal theme, including storefront styling, announcement layouts, and knowledgebase design.
 ---
+
 # Portal Theme Development
 
 The Portal acts as the public-facing storefront or landing environment for your Billmora installation, specifically designed for guest users to browse products, read announcements, or access the knowledgebase before logging in to the client area.
@@ -48,6 +49,15 @@ npx cross-env THEME=portal/mytheme vite dev
 ## Overriding Views
 
 Place custom Blade files inside the `views/` directory. They will automatically override any corresponding core portal views. This gives you 100% control over the public user experience and HTML structure.
+
+## Distribution & Installation
+
+Once your theme is ready, you can package it into a ZIP file to be uploaded via the **System > Themes** section of the Billmora Admin UI.
+
+> [!IMPORTANT]
+> The theme installer requires a specific directory structure within the ZIP file. Specifically, all public-facing CSS/JS/Image files **must** be placed inside an `assets/` folder.
+
+For details on how to correctly structure your theme for distribution, refer to the [Packaging for Distribution](./reference/packaging.md) guide.
 
 ## Full File Structure
 

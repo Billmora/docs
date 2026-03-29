@@ -2,6 +2,7 @@
 title: Client Theme Development
 description: Guide for developing custom client area themes to match Billmora to your exact brand identity.
 ---
+
 # Client Theme Development
 
 The client area is where your customers log in, manage their services, and view their invoices. Customizing the client theme allows you to match Billmora perfectly to your brand identity.
@@ -48,6 +49,15 @@ npx cross-env THEME=client/mytheme vite dev
 ## Overriding Views
 
 The client area templates are highly modular. By placing a Blade file inside your theme's `views/` directory matching the relative path of a core view, Billmora will automatically serve your custom file instead.
+
+## Distribution & Installation
+
+Once your client theme is complete, you can package it into a ZIP file for installation on other Billmora instances via the **System > Themes** section of the Admin panel.
+
+> [!IMPORTANT]
+> The theme installer requires a specific directory structure within the ZIP file. Specifically, all public-facing CSS/JS/Image files **must** be placed inside an `assets/` folder.
+
+For details on how to correctly structure your theme for distribution, refer to the [Packaging for Distribution](./reference/packaging.md) guide.
 
 ## Full File Structure
 
