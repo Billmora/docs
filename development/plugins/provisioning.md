@@ -64,6 +64,7 @@ namespace Plugins\Provisionings\Example;
 use App\Contracts\ProvisioningInterface;
 use App\Support\AbstractPlugin;
 use App\Models\Service;
+use App\Exceptions\ProvisioningException;
 
 class ExampleProvisioning extends AbstractPlugin implements ProvisioningInterface
 {
@@ -179,7 +180,7 @@ public function testConnection(array $config): bool
     ])->get($url);
 
     if (!$response->successful()) {
-        throw new \Exception('Connection failed. HTTP Status: ' . $response->status());
+        throw new ProvisioningException('Connection failed. HTTP Status: ' . $response->status(), ['response' => $response->json() ?: $response->body()]);
     }
 
     return true;
@@ -218,7 +219,7 @@ public function create(Service $service): void
     // 1. Sync or create user on the remote provider
     // 2. Build the creation payload using $config and $clientInput
     // 3. Call the remote API to create the resource
-    // 4. Throw an exception if creation fails
+    // 4. Throw a ProvisioningException if creation fails to capture full audited response
 }
 ```
 
@@ -588,7 +589,30 @@ Always include a `default` case that throws an exception. This ensures unknown o
 
 ---
 
-## 10. Best Practices
+## 10. Error Handling & Auditing
+
+For external API failures, always use **`App\Exceptions\ProvisioningException`** instead of the generic `\Exception`. 
+
+This allows Billmora's core engine to:
+1.  Display a **concise, user-friendly message** in the UI alert.
+2.  Record the **full technical response body** in the system audit logs for debugging.
+
+```php
+use App\Exceptions\ProvisioningException;
+
+// ...
+
+if (!$response->successful()) {
+    throw new ProvisioningException(
+        "Failed to create server. Status: " . $response->status(),
+        ['response' => $response->json() ?: $response->body()]
+    );
+}
+```
+
+---
+
+## 11. Best Practices
 
 ### Logging
 
@@ -599,6 +623,10 @@ Log::info('[Example] Creating server', ['service_id' => $service->id]);
 Log::error('[Example] Server creation failed', ['response' => $response->body()]);
 Log::debug('[Example] API Payload', ['payload' => $payload]);
 ```
+
+### Detailed Error Reporting
+
+When an API call fails, throw a `ProvisioningException` and pass the raw response data (JSON or body) in the second argument. This ensures that administrators can see exactly why an action failed when reviewing the system logs, without overwhelming the user interface with technical blobs.
 
 ### Stateless ID Resolution (Recommended)
 
