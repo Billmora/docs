@@ -1,10 +1,6 @@
----
-title: Event Reference
-description: Comprehensive reference of system-wide events available for Module plugins to subscribe and react to in Billmora.
----
 # Event Reference
 
-Billmora's core engine dispatches events at key moments throughout the application lifecycle. Module plugins can subscribe to these events via `getSubscribedEvents()` to react in real-time — without modifying any core code.
+Billmora core engine dispatches events at key moments throughout the application lifecycle. Module plugins can subscribe to these events via `getSubscribedEvents()` to react in real-time — without modifying any core code.
 
 Each event is a simple PHP class with **public readonly properties** that expose the relevant Eloquent model(s).
 
@@ -12,13 +8,13 @@ Each event is a simple PHP class with **public readonly properties** that expose
 
 ## How to Subscribe
 
-In your module's main class, map event classes to handler methods:
+In your module main class, map event classes to handler methods:
 
 ```php
 public function getSubscribedEvents(): array
 {
     return [
-        \App\Events\Invoice\Paid::class => 'onInvoicePaid',
+        \App\Events\Invoice\Paid::class => "onInvoicePaid",
     ];
 }
 
@@ -63,7 +59,7 @@ public function onInvoicePaid(\App\Events\Invoice\Paid $event): void
 | Captured | `App\Events\PaymentCaptured` | `Invoice $invoice`, `Plugin $plugin`, `GatewayCallbackResponse $response` | A payment is successfully captured by a gateway. |
 
 ::: info
-`PaymentCaptured` is primarily used internally by Billmora's core engine to process invoice payments. Module plugins can subscribe to it for logging, analytics, or external integrations — but use `Invoice\Paid` for simpler payment-complete reactions.
+`PaymentCaptured` is primarily used internally by Billmora core engine to process invoice payments. Module plugins can subscribe to it for logging, analytics, or external integrations — but use `Invoice\Paid` for simpler payment-complete reactions.
 :::
 
 ---
@@ -79,7 +75,7 @@ public function onInvoicePaid(\App\Events\Invoice\Paid $event): void
 | Provisioning Unsuspended | `App\Events\Service\ProvisioningUnsuspended` | `Service $service` | A suspended service is reactivated. |
 | Provisioning Terminated | `App\Events\Service\ProvisioningTerminated` | `Service $service` | A service is terminated on the remote provider. |
 | Provisioning Renewed | `App\Events\Service\ProvisioningRenewed` | `Service $service` | A service is renewed after payment. |
-| Provisioning Scaled | `App\Events\Service\ProvisioningScaled` | `Service $service` | A service's resources are scaled/upgraded. |
+| Provisioning Scaled | `App\Events\Service\ProvisioningScaled` | `Service $service` | A service resources are scaled/upgraded. |
 
 ---
 
@@ -93,6 +89,30 @@ public function onInvoicePaid(\App\Events\Invoice\Paid $event): void
 
 ---
 
+## Registrant Events
+
+| Event | Class | Properties | Dispatched When |
+|-------|-------|------------|-----------------|
+| Created | `App\Events\Registrant\Created` | `Registrant $registrant` | A new domain registrant record is created. |
+| Registration Completed | `App\Events\Registrant\RegistrationCompleted` | `Registrant $registrant` | Domain registration is successfully completed. |
+| Registration Failed | `App\Events\Registrant\RegistrationFailed` | `Registrant $registrant` | Domain registration fails. |
+| Renewed | `App\Events\Registrant\Renewed` | `Registrant $registrant` | A domain is successfully renewed. |
+
+---
+
+## Domain Events
+
+| Event | Class | Properties | Dispatched When |
+|-------|-------|------------|-----------------|
+| Registered | `App\Events\Domain\Registered` | `Registrant $registrant` | A domain is successfully registered. |
+| Registration Failed | `App\Events\Domain\RegistrationFailed` | `Registrant $registrant` | Domain registration attempt fails. |
+| Renewed | `App\Events\Domain\Renewed` | `Registrant $registrant` | A domain is successfully renewed. |
+| Expired | `App\Events\Domain\Expired` | `Registrant $registrant` | A domain has expired. |
+| Suspended | `App\Events\Domain\Suspended` | `Registrant $registrant` | A domain is suspended. |
+| Unsuspended | `App\Events\Domain\Unsuspended` | `Registrant $registrant` | A suspended domain is reactivated. |
+
+---
+
 ## Ticket Events
 
 | Event | Class | Properties | Dispatched When |
@@ -100,7 +120,7 @@ public function onInvoicePaid(\App\Events\Invoice\Paid $event): void
 | Created | `App\Events\Ticket\Created` | `Ticket $ticket` | A new support ticket is opened. |
 | Replied | `App\Events\Ticket\Replied` | `Ticket $ticket` | A reply is posted on a ticket. |
 | Assigned | `App\Events\Ticket\Assigned` | `Ticket $ticket` | A ticket is assigned to a staff member. |
-| Status Changed | `App\Events\Ticket\StatusChanged` | `Ticket $ticket` | A ticket's status changes. |
+| Status Changed | `App\Events\Ticket\StatusChanged` | `Ticket $ticket` | A ticket status changes. |
 | Closed | `App\Events\Ticket\Closed` | `Ticket $ticket` | A ticket is closed. |
 
 ---
@@ -119,8 +139,8 @@ public function onInvoicePaid(\App\Events\Invoice\Paid $event): void
 |-------|-------|------------|-----------------|
 | Created | `App\Events\User\Created` | `User $user` | A new user account is created (by admin). |
 | Registered | `App\Events\User\Registered` | `User $user` | A user registers via the portal. |
-| Updated | `App\Events\User\Updated` | `User $user` | A user's profile is updated. |
-| Billing Updated | `App\Events\User\BillingUpdated` | `User $user` | A user's billing information is updated. |
+| Updated | `App\Events\User\Updated` | `User $user` | A user profile is updated. |
+| Billing Updated | `App\Events\User\BillingUpdated` | `User $user` | A user billing information is updated. |
 | Password Reset Requested | `App\Events\User\PasswordResetRequested` | `User $user` | A user requests a password reset. |
 | Verification Resent | `App\Events\User\VerificationResent` | `User $user` | An email verification is resent. |
 
@@ -137,7 +157,7 @@ public function onInvoicePaid(\App\Events\Invoice\Paid $event): void
     $user = $invoice->user;           // The client who owns the invoice
     $items = $invoice->items;         // Invoice line items
     $amount = $invoice->total;        // Total amount
-    $currency = $invoice->currency;   // Currency code (e.g., 'USD')
+    $currency = $invoice->currency;   // Currency code (e.g., "USD")
 }
 
 public function onServiceActivated(\App\Events\Service\ProvisioningActivated $event): void
@@ -146,5 +166,13 @@ public function onServiceActivated(\App\Events\Service\ProvisioningActivated $ev
     $user = $service->user;           // The client who owns the service
     $package = $service->package;     // The package/product purchased
     $config = $service->configuration; // Service-specific configuration
+}
+
+public function onRegistrantCreated(\App\Events\Registrant\Created $event): void
+{
+    $registrant = $event->registrant;
+    $user = $registrant->user;        // The client who owns the domain
+    $domain = $registrant->domain;    // The domain name
+    $years = $registrant->years;      // Registration period
 }
 ```

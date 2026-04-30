@@ -84,6 +84,7 @@ export default defineConfig({
             },
             { text: 'Gateway', link: '/development/plugins/gateway' },
             { text: 'Provisioning', link: '/development/plugins/provisioning' },
+            { text: 'Registrar', link: '/development/plugins/registrar' },
             { text: 'Module', link: '/development/plugins/module' },
           ]
         },

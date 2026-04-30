@@ -1,10 +1,11 @@
 ---
 title: Plugin Conventions & Standards
-description: Universal conventions and standards required for building interoperable Billmora Gateway, Provisioning, and Module plugins.
+description: Universal conventions and standards required for building interoperable Billmora Gateway, Provisioning, Module, and Registrar plugins.
 ---
+
 # Plugin Conventions & Standards
 
-This guide documents the **universal conventions** that apply to all Billmora plugin types (Gateway, Provisioning, Module). These rules ensure consistency, prevent conflicts, and make plugins interoperable with Billmora's core engine.
+This guide documents the **universal conventions** that apply to all Billmora plugin types (Gateway, Provisioning, Module, Registrar). These rules ensure consistency, prevent conflicts, and make plugins interoperable with Billmora core engine.
 
 ---
 
@@ -25,7 +26,9 @@ plugin/
 │       └── resources/views/            ← Blade templates
 ├── Provisionings/
 │   └── ...
-└── Modules/
+├── Modules/
+│   └── ...
+└── Registrars/
     └── ...
 ```
 
@@ -55,6 +58,7 @@ Your namespace must mirror the directory path exactly:
 | `plugin/Provisionings/Pterodactyl/PterodactylProvisioning.php` | `Plugins\Provisionings\Pterodactyl` |
 | `plugin/Modules/Announcement/AnnouncementModule.php` | `Plugins\Modules\Announcement` |
 | `plugin/Modules/Announcement/Models/AnnouncementPost.php` | `Plugins\Modules\Announcement\Models` |
+| `plugin/Registrars/Example/ExampleRegistrar.php` | `Plugins\Registrars\Example` |
 
 ::: warning
 After creating a new plugin or adding new classes, run `composer dump-autoload` to regenerate the autoload map.
@@ -64,13 +68,13 @@ After creating a new plugin or adding new classes, run `composer dump-autoload` 
 
 ## 3. The `plugin.json` Manifest
 
-Every plugin requires a `plugin.json` manifest file. This declares your plugin's identity to Billmora's core engine.
+Every plugin requires a `plugin.json` manifest file. This declares your plugin identity to Billmora core engine.
 
 ```json
 {
     "name": "Human-Readable Name",
     "provider": "UniqueSlug",
-    "type": "gateway | provisioning | module",
+    "type": "gateway | provisioning | module | registrar",
     "version": "1.0.0",
     "description": "Short description of what this plugin does.",
     "author": "Your Name / Team",
@@ -82,7 +86,7 @@ Every plugin requires a `plugin.json` manifest file. This declares your plugin's
 |-------|----------|-------------|
 | `name` | ✅ | Display name shown in Admin Panel. |
 | `provider` | ✅ | Unique slug, must match your directory name. Used for routing and view namespacing. |
-| `type` | ✅ | One of: `gateway`, `provisioning`, `module`. |
+| `type` | ✅ | One of: `gateway`, `provisioning`, `module`, `registrar`. |
 | `version` | ✅ | Semantic version string. |
 | `description` | ✅ | Short description for the plugin listing. |
 | `author` | ✅ | Author name or team. |
@@ -94,13 +98,14 @@ Every plugin requires a `plugin.json` manifest file. This declares your plugin's
 
 ### Table Prefix Convention
 
-All plugin database tables **must** use a type-specific prefix to prevent name collisions with Billmora's core tables and other plugins:
+All plugin database tables **must** use a type-specific prefix to prevent name collisions with Billmora core tables and other plugins:
 
 | Plugin Type | Prefix | Example Table |
 |-------------|--------|---------------|
 | Gateway | `pg_` | `pg_stripe_logs` |
 | Provisioning | `pp_` | `pp_pterodactyl_configs` |
 | Module | `pm_` | `pm_announcement_posts` |
+| Registrar | `pr_` | `pr_example_domains` |
 
 ::: danger Never Use Unprefixed Tables
 Using table names without the correct prefix (e.g., `announcements` instead of `pm_announcements`) may conflict with future Billmora core tables or other plugins. This is a strict requirement.
@@ -108,7 +113,7 @@ Using table names without the correct prefix (e.g., `announcements` instead of `
 
 ### Migration File Location
 
-Place migration files inside your plugin's `database/migrations/` directory. Billmora's `AbstractPlugin` automatically discovers and runs them during `php artisan migrate`.
+Place migration files inside your plugin `database/migrations/` directory. Billmora `AbstractPlugin` automatically discovers and runs them during `php artisan migrate`.
 
 ```text
 plugin/Modules/Example/
@@ -119,7 +124,7 @@ plugin/Modules/Example/
 
 ### Migration File Naming
 
-Follow Laravel's standard migration naming convention with the prefixed table name:
+Follow Laravel standard migration naming convention with the prefixed table name:
 
 ```
 {YYYY}_{MM}_{DD}_{HHMMSS}_create_{prefix}_{plugin}_{table}_table.php
@@ -129,10 +134,11 @@ Follow Laravel's standard migration naming convention with the prefixed table na
 - `2026_03_23_000000_create_pm_announcement_posts_table.php`
 - `2026_03_23_000001_create_pg_stripe_webhook_logs_table.php`
 - `2026_03_23_000000_create_pp_cloudways_servers_table.php`
+- `2026_03_23_000000_create_pr_example_domains_table.php`
 
 ### Model Table Declaration
 
-Your Eloquent models **must** explicitly declare the `$table` property with the prefixed table name, since Laravel's auto-guess will not include the prefix:
+Your Eloquent models **must** explicitly declare the `$table` property with the prefixed table name, since Laravel auto-guess will not include the prefix:
 
 ```php
 namespace Plugins\Modules\Announcement\Models;
@@ -141,7 +147,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class AnnouncementPost extends Model
 {
-    protected $table = 'pm_announcement_posts';
+    protected $table = "pm_announcement_posts";
 }
 ```
 
@@ -157,9 +163,10 @@ Billmora automatically registers a view namespace for your plugin based on `type
 
 | Plugin | Namespace | Example Usage |
 |--------|-----------|---------------|
-| Gateway `Example` | `gateway.example::` | `view('gateway.example::popup')` |
-| Provisioning `Pterodactyl` | `provisioning.pterodactyl::` | `view('provisioning.pterodactyl::console')` |
-| Module `Announcement` | `module.announcement::` | `view('module.announcement::admin.index')` |
+| Gateway `Example` | `gateway.example::` | `view("gateway.example::popup")` |
+| Provisioning `Pterodactyl` | `provisioning.pterodactyl::` | `view("provisioning.pterodactyl::console")` |
+| Module `Announcement` | `module.announcement::` | `view("module.announcement::admin.index")` |
+| Registrar `Example` | `registrar.example::` | `view("registrar.example::admin.index")` |
 
 Views must be placed inside `resources/views/` within your plugin directory:
 
@@ -177,7 +184,7 @@ plugin/Modules/Announcement/
 
 ## 6. Route Registration
 
-Billmora's `AbstractPlugin` auto-loads route files from the `routes/` directory with appropriate middleware, URL prefixes, and name prefixes:
+Billmora `AbstractPlugin` auto-loads route files from the `routes/` directory with appropriate middleware, URL prefixes, and name prefixes:
 
 | File | Middleware | URL Prefix | Name Prefix |
 |------|-----------|------------|-------------|
@@ -195,6 +202,13 @@ Billmora's `AbstractPlugin` auto-loads route files from the `routes/` directory 
 | `routes/admin.php` | `/admin/modules/announcement` | `admin.modules.announcement.` |
 | `routes/client.php` | `/announcement` | `client.modules.announcement.` |
 
+**Example for a Registrar called `Example`:**
+
+| File | URL Prefix | Name Prefix |
+|------|------------|-------------|
+| `routes/admin.php` | `/admin/registrars/example` | `admin.registrars.example.` |
+| `routes/client.php` | `/example` | `client.registrars.example.` |
+
 ::: tip
 Only create the route files you need. If your plugin has no admin interface, skip `routes/admin.php`.
 :::
@@ -207,10 +221,10 @@ Config values defined in `getConfigSchema()` are stored in the database when the
 
 ```php
 // Single value
-$apiKey = $this->getInstanceConfig('api_key');
+$apiKey = $this->getInstanceConfig("api_key");
 
 // With default fallback
-$timeout = $this->getInstanceConfig('timeout', 30);
+$timeout = $this->getInstanceConfig("timeout", 30);
 ```
 
 ---
@@ -229,19 +243,19 @@ class MyController extends Controller
     public function store(Request $request)
     {
         $record = MyModel::create([...]);
-        $this->recordCreate('module.example.create', $record->toArray());
+        $this->recordCreate("module.example.create", $record->toArray());
     }
 
     public function update(Request $request, MyModel $record)
     {
         $old = $record->getOriginal();
         $record->update([...]);
-        $this->recordUpdate('module.example.update', $old, $record->getChanges());
+        $this->recordUpdate("module.example.update", $old, $record->getChanges());
     }
 
     public function destroy(MyModel $record)
     {
-        $this->recordDelete('module.example.delete', $record->toArray());
+        $this->recordDelete("module.example.delete", $record->toArray());
         $record->delete();
     }
 }
@@ -251,8 +265,10 @@ class MyController extends Controller
 
 ## Conclusion
 
-Following these conventions ensures your plugin integrates seamlessly with Billmora's core engine. For type-specific implementation details, refer to:
+Following these conventions ensures your plugin integrates seamlessly with Billmora core engine. For type-specific implementation details, refer to:
+
 - [**Gateway Plugin Development**](./../gateway.md)
 - [**Provisioning Plugin Development**](./../provisioning.md)
 - [**Module Plugin Development**](./../module.md)
+- [**Registrar Plugin Development**](./../registrar.md)
 - [**Schema Engine Reference**](./schema.md)
