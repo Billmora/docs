@@ -39,3 +39,5 @@ features:
     title: Roles, Permissions & Audit Logs
     details: Granular role-based access control, two-factor authentication, user punishments, and comprehensive audit trails across all platform activity.
 ---
+
+<HomeContent />
