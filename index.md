@@ -15,7 +15,7 @@ hero:
       link: /docs/introduction
     - theme: alt
       text: Demo
-      link: https://demo.billmora.com
+      link: /demo
 
 features:
   - icon: 🔌

@@ -33,6 +33,7 @@ export default defineConfig({
     logo: 'https://media.billmora.com/logo/main-bgnone.png',
     nav: [
       { text: 'Home', link: '/' },
+      { text: 'Demo', link: '/demo' },
       { text: 'Docs', link: '/docs/introduction' },
       { text: 'Development', link: '/development/introduction' },
       { text: 'Marketplace', link: '#' }
