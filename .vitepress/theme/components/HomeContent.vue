@@ -51,6 +51,15 @@ const faqs = [
     answer: 'Absolutely. Contributions are welcome — whether it\'s code, documentation, translations, or plugins. See the Contributing Guide on GitHub to get started.',
   },
 ]
+
+// ── Sponsors Data ──
+const diamondSponsors = [
+  { name: 'Octavia', logo: 'https://assets.octavia.id/logo/secondary-nobg.png', url: 'https://octavia.id' }
+]
+
+const emeraldSponsors = [
+  // { name: 'Name of Sponsor', logo: 'https://url-logo.png', url: 'https://website-sponsor.com' }
+]
 </script>
 
 <template>
@@ -159,30 +168,45 @@ const faqs = [
         </div>
 
         <div class="sponsors-grid">
-          <div class="sponsor-tier platinum">
+          <!-- Diamond Tier -->
+          <div class="sponsor-tier diamond">
             <div class="tier-logos">
-              <a href="https://github.com/Billmora/billmora/discussions" class="sponsor-empty-logo large" target="_blank" rel="noopener">
-                <span>Become a Platinum Sponsor</span>
+              <template v-if="diamondSponsors.length > 0">
+                <a v-for="(sponsor, i) in diamondSponsors" :key="i" :href="sponsor.url" class="sponsor-logo-box large" target="_blank" rel="noopener">
+                  <img :src="sponsor.logo" :alt="sponsor.name" class="sponsor-img" />
+                </a>
+              </template>
+              <a v-else href="https://github.com/sponsors/Billmora" class="sponsor-empty-logo large" target="_blank" rel="noopener">
+                <span>Become a Diamond Sponsor</span>
               </a>
             </div>
           </div>
-          <div class="sponsor-tier gold">
+          
+          <!-- Emerald Tier -->
+          <div class="sponsor-tier emerald">
             <div class="tier-logos">
-              <a href="https://github.com/Billmora/billmora/discussions" class="sponsor-empty-logo medium" target="_blank" rel="noopener">
-                <span>Your Logo</span>
-              </a>
-              <a href="https://github.com/Billmora/billmora/discussions" class="sponsor-empty-logo medium" target="_blank" rel="noopener">
-                <span>Your Logo</span>
-              </a>
-              <a href="https://github.com/Billmora/billmora/discussions" class="sponsor-empty-logo medium" target="_blank" rel="noopener">
-                <span>Your Logo</span>
-              </a>
+              <template v-if="emeraldSponsors.length > 0">
+                <a v-for="(sponsor, i) in emeraldSponsors" :key="i" :href="sponsor.url" class="sponsor-logo-box medium" target="_blank" rel="noopener">
+                  <img :src="sponsor.logo" :alt="sponsor.name" class="sponsor-img" />
+                </a>
+              </template>
+              <template v-else>
+                <a href="https://github.com/sponsors/Billmora" class="sponsor-empty-logo medium" target="_blank" rel="noopener">
+                  <span>Your Logo</span>
+                </a>
+                <a href="https://github.com/sponsors/Billmora" class="sponsor-empty-logo medium" target="_blank" rel="noopener">
+                  <span>Your Logo</span>
+                </a>
+                <a href="https://github.com/sponsors/Billmora" class="sponsor-empty-logo medium" target="_blank" rel="noopener">
+                  <span>Your Logo</span>
+                </a>
+              </template>
             </div>
           </div>
         </div>
 
         <div class="sponsors-cta">
-          <a href="https://github.com/Billmora/billmora/discussions" class="btn btn-outline" target="_blank" rel="noopener">
+          <a href="https://github.com/sponsors/Billmora" class="btn btn-outline" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
             Sponsor us on GitHub
           </a>
@@ -548,8 +572,45 @@ const faqs = [
   height: 80px;
 }
 
+.sponsor-logo-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--vp-c-bg-soft);
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 12px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  overflow: hidden;
+  padding: 1.5rem;
+}
+
+.sponsor-logo-box:hover {
+  border-color: var(--vp-c-brand-1);
+  box-shadow: 0 4px 20px -5px color-mix(in srgb, var(--vp-c-brand-1) 25%, transparent);
+}
+
+.sponsor-logo-box.large {
+  width: 100%;
+  max-width: 600px;
+  height: 120px;
+}
+
+.sponsor-logo-box.medium {
+  width: calc(33.333% - 1rem);
+  max-width: 250px;
+  height: 80px;
+}
+
+.sponsor-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
 @media (max-width: 640px) {
-  .sponsor-empty-logo.medium {
+  .sponsor-empty-logo.medium,
+  .sponsor-logo-box.medium {
     width: calc(50% - 0.5rem);
   }
 }
