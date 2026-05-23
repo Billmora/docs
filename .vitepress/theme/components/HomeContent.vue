@@ -8,7 +8,7 @@ const toggleFaq = (index: number) => {
 }
 
 const features = [
-  { label: 'Pricing', billmora: 'Free forever', whmcs: '~$15.95/mo', blesta: '~$7.95/mo', type: 'text' },
+  { label: 'Pricing', billmora: 'Free forever', whmcs: '~$34.95/mo', blesta: '~$17.95/mo', type: 'text' },
   { label: 'Open Source', billmora: true, whmcs: false, blesta: false },
   { label: 'No License Fees', billmora: true, whmcs: false, blesta: false },
   { label: 'Plugin-Based Provisioning', billmora: true, whmcs: true, blesta: true },
@@ -284,7 +284,7 @@ const emeraldSponsors = [
   background: var(--vp-c-bg-soft);
   border: 1px solid var(--vp-c-divider);
   border-radius: 1.5rem;
-  overflow: hidden;
+  overflow-x: auto;
   box-shadow: 0 20px 40px -15px rgba(0,0,0,0.05);
   font-family: var(--vp-font-family-base);
 }
@@ -298,6 +298,7 @@ const emeraldSponsors = [
   grid-template-columns: 2fr 1.2fr 1fr 1fr;
   background: var(--vp-c-bg-mute);
   border-bottom: 1px solid var(--vp-c-divider);
+  min-width: 768px;
 }
 
 .grid-col-feature, .grid-col-billmora, .grid-col-other {
@@ -337,6 +338,7 @@ const emeraldSponsors = [
   grid-template-columns: 2fr 1.2fr 1fr 1fr;
   border-bottom: 1px solid var(--vp-c-divider);
   transition: background-color 0.2s;
+  min-width: 768px;
 }
 
 .grid-row:last-child {
@@ -415,17 +417,7 @@ const emeraldSponsors = [
   opacity: 0.5;
 }
 
-@media (max-width: 768px) {
-  .grid-header, .grid-row {
-    grid-template-columns: 1fr 1fr;
-  }
-  .grid-col-other {
-    display: none !important;
-  }
-  .grid-col-billmora {
-    border-right: none;
-  }
-}
+
 
 /* ── FAQ ── */
 .faq-list {
