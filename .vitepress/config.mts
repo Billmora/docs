@@ -62,6 +62,12 @@ export default defineConfig({
             { text: 'Linux Server', link: '/docs/updating/linux-server' },
             { text: 'Web Hosting', link: '/docs/updating/web-hosting' }
           ]
+        },
+        {
+          text: 'Migration',
+          items: [
+            { text: 'Introduction', link: '/docs/migration/introduction' }
+          ]
         }
       ],
       '/development/': [
