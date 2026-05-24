@@ -47,6 +47,6 @@ When adding a new price to a variant option, you configure similar fields to the
 > **Important Relationship: Price Name Matching**  
 > The system requires the **Name** of the Variant Price to exactly match the **Name** of the Package Price. When a client selects a billing cycle (e.g., "Monthly"), the system validates that the selected variant also has a price named "Monthly". If the variant does not have a price with a matching name, that variant cannot be purchased under that billing cycle.
 
-## Module Integration
+## Plugin Integration
 
-The **Code** and **Value** fields are particularly important when your Package uses a Provisioning Instance. These values are passed to the provisioning module to automate the setup of the chosen variant on the server.
+The **Code** and **Value** fields are particularly important when your Package uses a Provisioning Plugin Instance. These values are passed to the Provisioning Plugin to automate the setup of the chosen variant on the server.

@@ -5,13 +5,13 @@ description: Managing domain registration, TLDs, and pricing rules.
 
 # Domains & TLDs
 
-In addition to regular hosting products, Billmora has a built-in **Domains** registration and management system. Domain Modules (*Registrar Modules*) handle the workflow for domain registration, renewal, and transfer.
+In addition to regular hosting products, Billmora has a built-in **Domains** registration and management system. Registrar Plugins handle the workflow for domain registration, renewal, and transfer.
 
 To sell domain names, you must first configure **TLDs** (Top-Level Domains).
 
 ## Managing TLDs
 
-A TLD is the extension of a domain, such as `.com`, `.net`, or `.id`. In the TLDs menu, you can configure registration rules, default registrars, and pricing for each extension.
+A TLD is the extension of a domain, such as `.com`, `.net`, or `.id`. In the TLDs menu, you can configure registration rules, default Registrar Plugins, and pricing for each extension.
 
 ### Field Glossary
 
@@ -22,7 +22,7 @@ A TLD is the extension of a domain, such as `.com`, `.net`, or `.id`. In the TLD
 | **Maximum Years** | Maximum number of years for registration. |
 | **Grace Period (Days)** | Number of days after expiration before the domain enters redemption. |
 | **Redemption Period (Days)** | Number of days after grace period before the domain is terminated. |
-| **Default Registrar** | Select the default registrar for this TLD. If set to *None*, domains must be processed manually. |
+| **Default Registrar Plugin** | Select the default Registrar Plugin for this TLD. If set to *None*, domains must be processed manually. |
 | **Status** | Set whether this TLD is visible in the store. |
 
 ### Pricing by Currency
@@ -39,4 +39,4 @@ You must define register, transfer, and renew pricing for each currency separate
 
 ## Domain Lifecycle
 
-Domains in Billmora have statuses such as *Active*, *Expired*, *Cancelled*, and *Pending Transfer*. Billmora's automation will ensure renewal invoices are created according to your *Automation Settings*. If the client does not pay, the domain will enter the **Grace Period**, followed by the **Redemption Period**, before ultimately being terminated at the Registrar.
+Domains in Billmora have statuses such as *Active*, *Expired*, *Cancelled*, and *Pending Transfer*. Billmora's automation will ensure renewal invoices are created according to your *Automation Settings*. If the client does not pay, the domain will enter the **Grace Period**, followed by the **Redemption Period**, before ultimately being terminated at the Registrar Plugin.

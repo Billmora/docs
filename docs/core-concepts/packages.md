@@ -5,13 +5,13 @@ description: Guide to creating and managing products or services (Packages) in B
 
 # Packages
 
-**Packages** are the core of what you sell to clients. A Package defines a specific product, complete with pricing, stock limitations, scaling options, and the automation module (provisioning) that will run when a client purchases it. In other platforms, these are usually referred to as *Products* or *Services*.
+**Packages** are the core of what you sell to clients. A Package defines a specific product, complete with pricing, stock limitations, scaling options, and the Provisioning Plugin that will run when a client purchases it. In other platforms, these are usually referred to as *Products* or *Services*.
 
 Every Package must be connected to one [Catalog](/docs/core-concepts/catalogs).
 
 ## Creating a New Package
 
-When you create or edit a Package, there are several key tabs you must configure: Summary, Pricing, Provisioning, and Scaling.
+When you create or edit a Package, there are several key tabs you must configure: Summary, Pricing, Provisioning Plugin, and Scaling.
 
 ### Summary Tab
 
@@ -46,13 +46,13 @@ Billmora supports various pricing structures per package.
 > **Important Relationship: Price Name Matching**  
 > If your Package has customizable options (Variants), the system requires the **Name** of the Variant Price to exactly match the **Name** of the Package Price. If you rename a Package Price, you must also rename the corresponding Variant Prices, otherwise clients will not be able to purchase those variants.
 
-### Provisioning Tab
+### Provisioning Plugin Tab
 
 This is where you connect the product to your server automation.
 
 | Field | Description |
 | :--- | :--- |
-| **Provisioning Instance** | Select the provisioning instance to link with this package. Once selected, you'll be able to configure specific schema options required by the provisioning module. |
+| **Provisioning Plugin Instance** | Select the Provisioning Plugin instance to link with this package. Once selected, you'll be able to configure specific schema options required by the Provisioning Plugin. |
 
 ### Scaling Tab
 
