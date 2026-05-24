@@ -50,6 +50,17 @@ export default defineConfig({
           ]
         },
         {
+          text: 'Core Concepts',
+          items: [
+            { text: 'Introduction', link: '/docs/core-concepts/introduction' },
+            { text: 'Catalogs', link: '/docs/core-concepts/catalogs' },
+            { text: 'Packages', link: '/docs/core-concepts/packages' },
+            { text: 'Variants', link: '/docs/core-concepts/variants' },
+            { text: 'Domains', link: '/docs/core-concepts/domains' },
+            { text: 'Coupons', link: '/docs/core-concepts/coupons' }
+          ]
+        },
+        {
           text: 'Installation',
           items: [
             { text: 'Linux Server', link: '/docs/installation/linux-server' },
