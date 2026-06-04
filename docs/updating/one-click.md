@@ -11,7 +11,7 @@ The easiest and recommended way to update your Billmora installation is through 
 
 Before you can use the automatic update feature, ensure your environment meets the following criteria:
 
-- **PHP 8.2+** must be active.
+- **PHP 8.3+** must be active.
 - **PharData Extension** must be enabled (used to extract `.tar.gz` files).
 - **Composer** must be available in your system path.
 - **Disk Space** must have at least **100 MB** of free space available.
