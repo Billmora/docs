@@ -7,5 +7,8 @@
   "devDependencies": {
     "sitemap": "^9.0.1",
     "vitepress": "^2.0.0-alpha.17"
+  },
+  "dependencies": {
+    "@scalar/api-reference": "^1.58.0"
   }
 }

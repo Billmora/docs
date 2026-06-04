@@ -36,6 +36,7 @@ export default defineConfig({
       { text: 'Demo', link: '/demo' },
       { text: 'Docs', link: '/docs/introduction' },
       { text: 'Development', link: '/development/introduction' },
+      { text: 'API', link: '/api/introduction' },
       { text: 'Marketplace', link: '#' }
     ],
     search: {
@@ -126,6 +127,15 @@ export default defineConfig({
             { text: 'Invoice', link: '/development/themes/invoice' },
           ]
         },
+      ],
+      '/api/': [
+        {
+          text: 'API Reference',
+          items: [
+            { text: 'Introduction', link: '/api/introduction' },
+            { text: 'Interactive Reference', link: '/api/reference' },
+          ]
+        }
       ],
     },
 
