@@ -25,7 +25,7 @@ Download the latest `billmora.tar.gz` (or `.zip` equivalent) from the [GitHub Re
 2. Navigate to your Billmora directory (e.g., `/home/username/billmora`).
 3. Upload the new release archive you downloaded.
 4. Extract the archive directly inside this folder, allowing it to **overwrite** existing files.
-   *(Your `.env` config file and `storage/` directory will remain intact, as they are not included in the release archive, preserving your settings and uploaded data).*
+   _(Your `.env` config file and `storage/` directory will remain intact, as they are not included in the release archive, preserving your settings and uploaded data)._
 5. Delete the uploaded archive file after successful extraction to save disk space.
 
 ## 4. Run Migrations & Clear Cache
@@ -42,7 +42,7 @@ Most modern control panels include an in-browser Terminal. Open it and run the f
    ```
 2. Run database migrations:
    ```bash
-   php artisan migrate --seed --force
+   php artisan migrate --force
    ```
 3. Clear the application caches:
    ```bash
@@ -61,6 +61,7 @@ If your shared host has absolutely no SSH or Terminal access, you might need to 
 If you set up cron jobs for queue workers, they generally will pick up the new changes automatically on their next run. However, it's recommended to restart the queues to ensure any long-running ghost processes grab the new code.
 
 ### Via Terminal
+
 ```bash
 php artisan queue:restart
 ```

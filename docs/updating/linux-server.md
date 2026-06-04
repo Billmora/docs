@@ -61,7 +61,7 @@ Run the database migrations to apply any new schema changes, and clear the appli
 
 ```bash
 # Run migrations, forcing them to run without confirmation in production
-php artisan migrate --seed --force
+php artisan migrate --force
 
 # Clear cached configuration, routes, and views
 php artisan optimize:clear
@@ -80,6 +80,7 @@ systemctl restart billmora.service
 ```
 
 Alternatively, you can gracefully restart workers using artisan:
+
 ```bash
 php artisan queue:restart
 ```
