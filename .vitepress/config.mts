@@ -71,6 +71,7 @@ export default defineConfig({
         {
           text: 'Updating',
           items: [
+            { text: 'One-Click Update (Recommended)', link: '/docs/updating/one-click' },
             { text: 'Linux Server', link: '/docs/updating/linux-server' },
             { text: 'Web Hosting', link: '/docs/updating/web-hosting' }
           ]
