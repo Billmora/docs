@@ -1,11 +1,11 @@
 ---
 title: Variants
-description: Adding additional customization options to client orders.
+description: Adding customizable options with independent pricing to packages.
 ---
 
-# Variants (Configurable Options)
+# Variants
 
-**Variants** give your clients the flexibility to customize the [Package](/docs/core-concepts/packages) they are purchasing. This feature is identical to what is known as *Configurable Options* in other billing systems.
+**Variants** allow clients to customize the [Package](/docs/core-concepts/packages) they are purchasing by choosing from a set of predefined options, each with its own pricing.
 
 Examples of Variants usage:
 - Selecting an Operating System (Ubuntu, CentOS, Windows) for a VPS.

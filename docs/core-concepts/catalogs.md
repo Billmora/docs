@@ -5,9 +5,9 @@ description: Managing product groups or categories in Billmora.
 
 # Catalogs
 
-**Catalogs** in Billmora serve as the highest-level grouping for your products and services. If you are familiar with WHMCS, this is equivalent to *Product Groups*.
+**Catalogs** are the top-level grouping for your packages in Billmora. They act as categories that organize your offerings so clients can easily browse and find what they need.
 
-Using Catalogs, you can organize your offerings so clients can easily browse different categories, for example, separating "Web Hosting", "VPS Hosting", and "Software Licenses".
+Using Catalogs, you can separate your products into distinct groups — for example, *Web Hosting*, *VPS Hosting*, and *Software Licenses*.
 
 ## Creating a New Catalog
 
