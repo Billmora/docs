@@ -26,6 +26,8 @@ When you create or edit a Package, there are several key tabs you must configure
 | **Per User Limit** | Set the maximum number of this package a single user can purchase. Use -1 for no limit. |
 | **Allow Cancellation** | Enable to let customers request service cancellation for this package. |
 | **Allow Quantity** | Enable to let customers purchase multiple or single quantities of this package. |
+| **Prorata Billing Day** | Set a specific day of the month (1–28) to enable prorata billing for this package. Leave empty to disable prorata billing. |
+| **Auto Provisioning** | Enable to automatically run provisioning and activate the service upon invoice payment. If disabled, admins must manually trigger provisioning. |
 | **Status** | Set the status of the package to visible or hidden. |
 
 ### Pricing Tab
@@ -61,6 +63,23 @@ If you want to allow clients to upgrade or downgrade their service, you configur
 | Field | Description |
 | :--- | :--- |
 | **Scalable To** | Select the packages that this package can be scaled up or down to. |
+
+### Custom Fields Tab
+
+Custom Fields allow you to collect additional information from customers during checkout. These fields are directly tied to the package and will be attached to the service.
+
+| Field | Description |
+| :--- | :--- |
+| **Label** | The display name for the field shown to the user during checkout. |
+| **Internal Name** | The internal variable name used for mapping. Leave empty to auto-generate from label. Must be lowercase alphanumeric with underscores (e.g., `server_hostname`). |
+| **Type** | The input type (Text, Password, Textarea, Email, Number, Dropdown). |
+| **Helper Text** | Optional text displayed below the field to guide the user. |
+| **Default Value** | Optional default value to pre-fill the field. |
+| **Show on Order Form** | Toggle whether this field is visible to customers during the checkout process. If disabled, the field can only be populated programmatically or by admins. |
+| **Show on Invoice** | Toggle whether this field and its value are displayed on the customer's invoice. |
+| **Options** | If Type is Dropdown, define the options one per line. Separate the value and label with a pipe (`\|`). If no pipe is used, the value is also used as the label. |
+| **Condition** | Optionally configure conditional logic to show/hide this field based on the value of another package field or additional configuration. |
+
 
 ## Connecting Variants
 
