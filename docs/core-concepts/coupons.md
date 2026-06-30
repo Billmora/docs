@@ -26,6 +26,7 @@ In Billmora, promotional code configurations can be made very specific. You are 
 | :--- | :--- |
 | **Maximum Uses** | Set the maximum number of times this coupon can be used globally. Leave blank for unlimited uses. |
 | **Maximum Uses Per User** | Set the maximum number of times a single user can use this coupon. Leave blank for unlimited uses. |
+| **Client Restrictions** | Restrict the coupon to specific client types: *None* (default, any client), *New Clients Only* (clients with no existing orders), or *Existing Clients Only* (clients who have placed at least one previous order). |
 | **Start Date** | Select the date and time when the coupon becomes valid. Leave blank for immediate validity. |
 | **Expiration Date** | Select the date and time when the coupon expires. Leave blank for no expiration. |
 
