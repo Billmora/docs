@@ -706,6 +706,52 @@ See the [**Plugin Conventions & Standards**](./reference/conventions.md#_4-datab
 
 ---
 
+## 12. Optional Hooks
+
+Optional hooks are methods that your plugin **may** implement to extend default behavior. They are not part of `ProvisioningInterface` and are never required. Billmora's core checks for their existence via `method_exists()` before calling them.
+
+### `validateBeforeCart(array $configuration, array $fields): ?string`
+
+Called **before a package is added to the cart**, after the client has filled in the checkout schema and custom fields. Use this hook to perform any custom validation — either internal or by calling an external API — before the item is confirmed into the cart.
+
+**Parameters:**
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| `$configuration` | `array` | Data submitted by the client from `getCheckoutSchema()`. |
+| `$fields` | `array` | Data from the package's Custom Fields visible on the order form. |
+
+**Return value:**
+- Return `null` to allow the cart action to proceed.
+- Return a `string` error message to block it — Billmora will display this message as a flash error to the client.
+
+> [!WARNING]
+> If this method throws an **exception**, Billmora will block the cart action and display a generic *"Validation service is currently unavailable"* error to the client. Do not throw exceptions for expected validation failures — use the `string` return value instead.
+
+```php
+public function validateBeforeCart(array $configuration, array $fields): ?string
+{
+    $hostname = $fields['hostname'] ?? null;
+
+    // Example: reject reserved hostnames
+    if ($hostname && str_starts_with($hostname, 'admin')) {
+        return 'The hostname may not start with "admin".';
+    }
+
+    // Example: external API check
+    $response = Http::get('https://api.example.com/validate', [
+        'node' => $configuration['node_id'] ?? null,
+    ]);
+
+    if (!$response->successful() || !$response->json('available')) {
+        return 'The selected node is not available. Please choose a different one.';
+    }
+
+    return null;
+}
+```
+
+---
+
 ## Conclusion
 
 By implementing the `ProvisioningInterface` methods and letting Billmora's core engine handle the lifecycle transitions, stock management, and event dispatching, you can build powerful hosting integrations with minimal boilerplate. Your plugin only needs to focus on speaking to the remote provider's API — Billmora takes care of the rest!

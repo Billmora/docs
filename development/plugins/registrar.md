@@ -532,6 +532,47 @@ See the [**Plugin Conventions & Standards**](./reference/conventions.md#_4-datab
 
 ---
 
-## 14. Conclusion
+## 14. Optional Hooks
+
+Optional hooks are methods that your plugin **may** implement to extend default behavior. They are not part of `RegistrarInterface` and are never required. Billmora's core checks for their existence via `method_exists()` before calling them.
+
+### `validateBeforeCart(string $domain, string $type, ?string $eppCode): ?string`
+
+Called **before a domain is added to the cart**, after the client has selected the registration period (or entered an EPP code for transfers). Use this hook to perform any custom validation — either internal or by calling an external API — before the item is confirmed into the cart.
+
+**Parameters:**
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| `$domain` | `string` | The full domain name (e.g., `example.com`). |
+| `$type` | `string` | Either `'register'` or `'transfer'`. |
+| `$eppCode` | `string\|null` | The EPP code provided by the client. `null` for registrations. |
+
+**Return value:**
+- Return `null` to allow the cart action to proceed.
+- Return a `string` error message to block it — Billmora will display this message as a flash error to the client.
+
+> [!WARNING]
+> If this method throws an **exception**, Billmora will block the cart action and display a generic *"Validation service is currently unavailable"* error to the client. Do not throw exceptions for expected validation failures — use the `string` return value instead.
+
+```php
+public function validateBeforeCart(string $domain, string $type, ?string $eppCode): ?string
+{
+    // Example: block domains on a blacklist
+    if ($this->isDomainBlacklisted($domain)) {
+        return "The domain \"{$domain}\" is not available for registration through this provider.";
+    }
+
+    // Example: validate EPP code format before attempting transfer
+    if ($type === 'transfer' && $eppCode && !preg_match('/^[a-zA-Z0-9\-]{6,32}$/', $eppCode)) {
+        return 'The EPP code format is invalid. Please check and try again.';
+    }
+
+    return null;
+}
+```
+
+---
+
+## 15. Conclusion
 
 By implementing the `RegistrarInterface` methods and letting Billmora core engine handle the billing, invoicing, and customer management, you can build powerful domain registration integrations with minimal boilerplate. Your plugin only needs to focus on speaking to the registrar API — Billmora takes care of the rest!
