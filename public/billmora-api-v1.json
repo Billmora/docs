@@ -322,8 +322,8 @@
                                             "null"
                                         ],
                                         "enum": [
-                                            "active",
-                                            "inactive"
+                                            "visible",
+                                            "hidden"
                                         ]
                                     }
                                 },
@@ -443,8 +443,8 @@
                                     "status": {
                                         "type": "string",
                                         "enum": [
-                                            "active",
-                                            "inactive"
+                                            "visible",
+                                            "hidden"
                                         ]
                                     }
                                 }
@@ -1765,8 +1765,8 @@
                                             "null"
                                         ],
                                         "enum": [
-                                            "active",
-                                            "inactive"
+                                            "visible",
+                                            "hidden"
                                         ]
                                     }
                                 },
@@ -1890,8 +1890,8 @@
                                     "status": {
                                         "type": "string",
                                         "enum": [
-                                            "active",
-                                            "inactive"
+                                            "visible",
+                                            "hidden"
                                         ]
                                     }
                                 }
@@ -3238,8 +3238,8 @@
                                     "status": {
                                         "type": "string",
                                         "enum": [
-                                            "active",
-                                            "inactive"
+                                            "visible",
+                                            "hidden"
                                         ]
                                     },
                                     "plugin_id": {
@@ -3255,9 +3255,6 @@
                                     "max_years": {
                                         "type": "integer",
                                         "minimum": 1
-                                    },
-                                    "whois_privacy": {
-                                        "type": "boolean"
                                     },
                                     "sort_order": {
                                         "type": [
@@ -3379,8 +3376,8 @@
                                     "status": {
                                         "type": "string",
                                         "enum": [
-                                            "active",
-                                            "inactive"
+                                            "visible",
+                                            "hidden"
                                         ]
                                     },
                                     "plugin_id": {
@@ -3396,9 +3393,6 @@
                                     "max_years": {
                                         "type": "integer",
                                         "minimum": 1
-                                    },
-                                    "whois_privacy": {
-                                        "type": "boolean"
                                     },
                                     "sort_order": {
                                         "type": [
@@ -4102,14 +4096,21 @@
                                         "type": "string",
                                         "maxLength": 255
                                     },
+                                    "code": {
+                                        "type": [
+                                            "string",
+                                            "null"
+                                        ],
+                                        "maxLength": 255
+                                    },
                                     "status": {
                                         "type": [
                                             "string",
                                             "null"
                                         ],
                                         "enum": [
-                                            "active",
-                                            "inactive"
+                                            "visible",
+                                            "hidden"
                                         ]
                                     },
                                     "is_scalable": {
@@ -4226,11 +4227,18 @@
                                         "type": "string",
                                         "maxLength": 255
                                     },
+                                    "code": {
+                                        "type": [
+                                            "string",
+                                            "null"
+                                        ],
+                                        "maxLength": 255
+                                    },
                                     "status": {
                                         "type": "string",
                                         "enum": [
-                                            "active",
-                                            "inactive"
+                                            "visible",
+                                            "hidden"
                                         ]
                                     },
                                     "is_scalable": {
@@ -4378,6 +4386,18 @@
                     "id": {
                         "type": "integer"
                     },
+                    "service_id": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
+                    "registrant_id": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
                     "description": {
                         "type": "string"
                     },
@@ -4393,6 +4413,8 @@
                 },
                 "required": [
                     "id",
+                    "service_id",
+                    "registrant_id",
                     "description",
                     "quantity",
                     "unit_price",
@@ -4425,6 +4447,9 @@
                         "type": "string"
                     },
                     "currency": {
+                        "type": "string"
+                    },
+                    "notes": {
                         "type": "string"
                     },
                     "due_date": {
@@ -4474,6 +4499,7 @@
                     "tax",
                     "total",
                     "currency",
+                    "notes",
                     "due_date",
                     "paid_at",
                     "amount_due",
@@ -4488,13 +4514,34 @@
                     "id": {
                         "type": "integer"
                     },
+                    "item_type": {
+                        "$ref": "#/components/schemas/OrderItemType"
+                    },
                     "description": {
                         "type": "string"
                     },
                     "quantity": {
                         "type": "integer"
                     },
+                    "billing_type": {
+                        "type": "string"
+                    },
+                    "billing_period": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "billing_interval": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
                     "unit_price": {
+                        "type": "string"
+                    },
+                    "setup_fee": {
                         "type": "string"
                     },
                     "amount": {
@@ -4503,12 +4550,25 @@
                 },
                 "required": [
                     "id",
+                    "item_type",
                     "description",
                     "quantity",
+                    "billing_type",
+                    "billing_period",
+                    "billing_interval",
                     "unit_price",
+                    "setup_fee",
                     "amount"
                 ],
                 "title": "OrderItemResource"
+            },
+            "OrderItemType": {
+                "type": "string",
+                "enum": [
+                    "service",
+                    "domain"
+                ],
+                "title": "OrderItemType"
             },
             "OrderResource": {
                 "type": "object",
@@ -4540,6 +4600,12 @@
                     "currency": {
                         "type": "string"
                     },
+                    "notes": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
                     "completed_at": {
                         "type": [
                             "string",
@@ -4561,6 +4627,24 @@
                         "type": "array",
                         "items": {
                             "$ref": "#/components/schemas/OrderItemResource"
+                        }
+                    },
+                    "services": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ServiceResource"
+                        }
+                    },
+                    "registrants": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/RegistrantResource"
+                        }
+                    },
+                    "invoices": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/InvoiceResource"
                         }
                     },
                     "created_at": {
@@ -4588,6 +4672,7 @@
                     "tax",
                     "total",
                     "currency",
+                    "notes",
                     "completed_at",
                     "cancelled_at",
                     "created_at",
@@ -4600,6 +4685,24 @@
                 "properties": {
                     "id": {
                         "type": "integer"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "billing_period": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "billing_interval": {
+                        "type": "string"
+                    },
+                    "enabled": {
+                        "type": "string"
                     },
                     "rates": {
                         "type": [
@@ -4625,6 +4728,11 @@
                 },
                 "required": [
                     "id",
+                    "name",
+                    "type",
+                    "billing_period",
+                    "billing_interval",
+                    "enabled",
                     "rates",
                     "created_at",
                     "updated_at"
@@ -5144,6 +5252,9 @@
                     "language": {
                         "type": "string"
                     },
+                    "auto_credit_payment": {
+                        "type": "boolean"
+                    },
                     "email_verified_at": {
                         "type": [
                             "string",
@@ -5175,6 +5286,7 @@
                     "status",
                     "currency",
                     "language",
+                    "auto_credit_payment",
                     "email_verified_at",
                     "created_at",
                     "updated_at"
@@ -5188,6 +5300,9 @@
                         "type": "integer"
                     },
                     "name": {
+                        "type": "string"
+                    },
+                    "value": {
                         "type": "string"
                     },
                     "prices": {
@@ -5214,6 +5329,7 @@
                 "required": [
                     "id",
                     "name",
+                    "value",
                     "created_at",
                     "updated_at"
                 ],
@@ -5264,6 +5380,9 @@
                     "name": {
                         "type": "string"
                     },
+                    "code": {
+                        "type": "string"
+                    },
                     "status": {
                         "type": "string"
                     },
@@ -5294,6 +5413,7 @@
                 "required": [
                     "id",
                     "name",
+                    "code",
                     "status",
                     "is_scalable",
                     "created_at",
