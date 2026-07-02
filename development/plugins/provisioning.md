@@ -410,6 +410,50 @@ plugin/
 Render via: `view('provisioning.example::client.services.console')`
 :::
 
+::: tip Integrating with the Native Service Layout (`@section('workspaces')`)
+Instead of rendering a fully standalone view, you can make your custom page feel **completely native** by extending Billmora's service detail layout. This gives you the standard service header, billing info, and action sidebar for free — your content fills the main workspace area.
+
+To do this, your view should:
+1. **Extend** `client::services.show` — the standard service detail layout.
+2. **Yield** to `@section('workspaces')` — the content slot in the main column.
+
+```blade
+@extends('client::services.show')
+
+@section('workspaces')
+<div class="bg-billmora-bg border-2 border-billmora-2 rounded-2xl overflow-hidden">
+    <div class="bg-billmora-1 px-6 py-4 border-b-2 border-billmora-2 flex items-center gap-2">
+        <i class="fa-solid fa-chart-pie text-billmora-primary-500"></i>
+        <h3 class="font-semibold text-slate-600">Resource Usage</h3>
+    </div>
+    <div class="p-6">
+        {{-- Your page content here --}}
+    </div>
+</div>
+@endsection
+```
+
+The following variables are automatically available in any `page`-type view:
+
+| Variable | Type | Description |
+| :--- | :--- | :--- |
+| `$service` | `Service` | The full Eloquent service model. |
+| `$slug` | `string` | The slug of the current action being rendered. |
+| `$clientActions` | `array` | The full list of client actions for this service. |
+
+You may also pass additional variables from your handler:
+
+```php
+case 'stats':
+    return view('provisioning.example::client.stats', [
+        'service'       => $service,
+        'config'        => $config,
+        'clientActions' => $this->getClientAction($service),
+        // ... any other data
+    ]);
+```
+:::
+
 ::: tip
 Billmora automatically injects a `$clientActions` variable into your view containing the full list of defined actions. You can use this to render navigation tabs or sidebar menus within your custom page.
 :::
