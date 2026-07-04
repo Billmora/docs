@@ -310,11 +310,25 @@
                                         "type": "string",
                                         "maxLength": 255
                                     },
+                                    "slug": {
+                                        "type": [
+                                            "string",
+                                            "null"
+                                        ],
+                                        "maxLength": 255
+                                    },
                                     "description": {
                                         "type": [
                                             "string",
                                             "null"
                                         ]
+                                    },
+                                    "icon": {
+                                        "type": [
+                                            "string",
+                                            "null"
+                                        ],
+                                        "maxLength": 255
                                     },
                                     "status": {
                                         "type": [
@@ -324,6 +338,12 @@
                                         "enum": [
                                             "visible",
                                             "hidden"
+                                        ]
+                                    },
+                                    "sort_order": {
+                                        "type": [
+                                            "integer",
+                                            "null"
                                         ]
                                     }
                                 },
@@ -434,17 +454,37 @@
                                         "type": "string",
                                         "maxLength": 255
                                     },
+                                    "slug": {
+                                        "type": [
+                                            "string",
+                                            "null"
+                                        ],
+                                        "maxLength": 255
+                                    },
                                     "description": {
                                         "type": [
                                             "string",
                                             "null"
                                         ]
                                     },
+                                    "icon": {
+                                        "type": [
+                                            "string",
+                                            "null"
+                                        ],
+                                        "maxLength": 255
+                                    },
                                     "status": {
                                         "type": "string",
                                         "enum": [
                                             "visible",
                                             "hidden"
+                                        ]
+                                    },
+                                    "sort_order": {
+                                        "type": [
+                                            "integer",
+                                            "null"
                                         ]
                                     }
                                 }
@@ -1750,6 +1790,13 @@
                                         "type": "string",
                                         "maxLength": 255
                                     },
+                                    "slug": {
+                                        "type": [
+                                            "string",
+                                            "null"
+                                        ],
+                                        "maxLength": 255
+                                    },
                                     "description": {
                                         "type": [
                                             "string",
@@ -1768,6 +1815,78 @@
                                             "visible",
                                             "hidden"
                                         ]
+                                    },
+                                    "icon": {
+                                        "type": [
+                                            "string",
+                                            "null"
+                                        ],
+                                        "maxLength": 255
+                                    },
+                                    "stock": {
+                                        "type": [
+                                            "integer",
+                                            "null"
+                                        ],
+                                        "minimum": -1
+                                    },
+                                    "per_user_limit": {
+                                        "type": [
+                                            "integer",
+                                            "null"
+                                        ],
+                                        "minimum": -1
+                                    },
+                                    "allow_cancellation": {
+                                        "type": [
+                                            "boolean",
+                                            "null"
+                                        ]
+                                    },
+                                    "allow_quantity": {
+                                        "type": [
+                                            "string",
+                                            "null"
+                                        ],
+                                        "enum": [
+                                            "single",
+                                            "multiple"
+                                        ]
+                                    },
+                                    "prorata_day": {
+                                        "type": [
+                                            "integer",
+                                            "null"
+                                        ],
+                                        "minimum": 0,
+                                        "maximum": 31
+                                    },
+                                    "auto_provision": {
+                                        "type": [
+                                            "boolean",
+                                            "null"
+                                        ]
+                                    },
+                                    "sort_order": {
+                                        "type": [
+                                            "integer",
+                                            "null"
+                                        ]
+                                    },
+                                    "plugin_id": {
+                                        "type": [
+                                            "integer",
+                                            "null"
+                                        ]
+                                    },
+                                    "provisioning_config": {
+                                        "type": [
+                                            "array",
+                                            "null"
+                                        ],
+                                        "items": {
+                                            "type": "string"
+                                        }
                                     }
                                 },
                                 "required": [
@@ -1878,6 +1997,13 @@
                                         "type": "string",
                                         "maxLength": 255
                                     },
+                                    "slug": {
+                                        "type": [
+                                            "string",
+                                            "null"
+                                        ],
+                                        "maxLength": 255
+                                    },
                                     "description": {
                                         "type": [
                                             "string",
@@ -1893,6 +2019,78 @@
                                             "visible",
                                             "hidden"
                                         ]
+                                    },
+                                    "icon": {
+                                        "type": [
+                                            "string",
+                                            "null"
+                                        ],
+                                        "maxLength": 255
+                                    },
+                                    "stock": {
+                                        "type": [
+                                            "integer",
+                                            "null"
+                                        ],
+                                        "minimum": -1
+                                    },
+                                    "per_user_limit": {
+                                        "type": [
+                                            "integer",
+                                            "null"
+                                        ],
+                                        "minimum": -1
+                                    },
+                                    "allow_cancellation": {
+                                        "type": [
+                                            "boolean",
+                                            "null"
+                                        ]
+                                    },
+                                    "allow_quantity": {
+                                        "type": [
+                                            "string",
+                                            "null"
+                                        ],
+                                        "enum": [
+                                            "single",
+                                            "multiple"
+                                        ]
+                                    },
+                                    "prorata_day": {
+                                        "type": [
+                                            "integer",
+                                            "null"
+                                        ],
+                                        "minimum": 0,
+                                        "maximum": 31
+                                    },
+                                    "auto_provision": {
+                                        "type": [
+                                            "boolean",
+                                            "null"
+                                        ]
+                                    },
+                                    "sort_order": {
+                                        "type": [
+                                            "integer",
+                                            "null"
+                                        ]
+                                    },
+                                    "plugin_id": {
+                                        "type": [
+                                            "integer",
+                                            "null"
+                                        ]
+                                    },
+                                    "provisioning_config": {
+                                        "type": [
+                                            "array",
+                                            "null"
+                                        ],
+                                        "items": {
+                                            "type": "string"
+                                        }
                                     }
                                 }
                             }
@@ -2561,6 +2759,30 @@
                                     "next_due_date": {
                                         "type": "string",
                                         "format": "date-time"
+                                    },
+                                    "plugin_id": {
+                                        "type": [
+                                            "integer",
+                                            "null"
+                                        ]
+                                    },
+                                    "variant_selections": {
+                                        "type": [
+                                            "array",
+                                            "null"
+                                        ],
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "configuration": {
+                                        "type": [
+                                            "array",
+                                            "null"
+                                        ],
+                                        "items": {
+                                            "type": "string"
+                                        }
                                     }
                                 }
                             }
@@ -4343,11 +4565,23 @@
                     "name": {
                         "type": "string"
                     },
+                    "slug": {
+                        "type": "string"
+                    },
                     "description": {
                         "type": "string"
                     },
+                    "icon": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
                     "status": {
                         "type": "string"
+                    },
+                    "sort_order": {
+                        "type": "integer"
                     },
                     "packages": {
                         "type": "array",
@@ -4373,8 +4607,11 @@
                 "required": [
                     "id",
                     "name",
+                    "slug",
                     "description",
+                    "icon",
                     "status",
+                    "sort_order",
                     "created_at",
                     "updated_at"
                 ],
@@ -4748,11 +4985,57 @@
                     "name": {
                         "type": "string"
                     },
+                    "slug": {
+                        "type": "string"
+                    },
                     "description": {
                         "type": "string"
                     },
+                    "icon": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
                     "status": {
                         "type": "string"
+                    },
+                    "stock": {
+                        "type": "integer"
+                    },
+                    "per_user_limit": {
+                        "type": "integer"
+                    },
+                    "allow_cancellation": {
+                        "type": "boolean"
+                    },
+                    "allow_quantity": {
+                        "type": "string"
+                    },
+                    "prorata_day": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
+                    "auto_provision": {
+                        "type": "boolean"
+                    },
+                    "sort_order": {
+                        "type": "integer"
+                    },
+                    "plugin_id": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
+                    "provisioning_config": {
+                        "type": [
+                            "array",
+                            "null"
+                        ],
+                        "items": {}
                     },
                     "catalog": {
                         "$ref": "#/components/schemas/CatalogResource"
@@ -4787,8 +5070,19 @@
                 "required": [
                     "id",
                     "name",
+                    "slug",
                     "description",
+                    "icon",
                     "status",
+                    "stock",
+                    "per_user_limit",
+                    "allow_cancellation",
+                    "allow_quantity",
+                    "prorata_day",
+                    "auto_provision",
+                    "sort_order",
+                    "plugin_id",
+                    "provisioning_config",
                     "created_at",
                     "updated_at"
                 ],
@@ -4825,6 +5119,13 @@
                         "type": "boolean"
                     },
                     "nameservers": {
+                        "type": [
+                            "array",
+                            "null"
+                        ],
+                        "items": {}
+                    },
+                    "configuration": {
                         "type": [
                             "array",
                             "null"
@@ -4891,6 +5192,7 @@
                     "currency",
                     "auto_renew",
                     "nameservers",
+                    "configuration",
                     "registered_at",
                     "expires_at",
                     "suspended_at",
@@ -4977,11 +5279,37 @@
                         ],
                         "format": "date-time"
                     },
+                    "plugin_id": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
+                    "variant_selections": {
+                        "type": [
+                            "array",
+                            "null"
+                        ],
+                        "items": {}
+                    },
+                    "configuration": {
+                        "type": [
+                            "array",
+                            "null"
+                        ],
+                        "items": {}
+                    },
                     "user": {
                         "$ref": "#/components/schemas/UserResource"
                     },
                     "package": {
                         "$ref": "#/components/schemas/PackageResource"
+                    },
+                    "scalings": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ServiceScalingResource"
+                        }
                     },
                     "created_at": {
                         "type": [
@@ -5015,10 +5343,73 @@
                     "suspended_at",
                     "terminated_at",
                     "cancelled_at",
+                    "plugin_id",
+                    "variant_selections",
+                    "configuration",
                     "created_at",
                     "updated_at"
                 ],
                 "title": "ServiceResource"
+            },
+            "ServiceScalingResource": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "service_id": {
+                        "type": "integer"
+                    },
+                    "status": {
+                        "type": "string"
+                    },
+                    "old_package_id": {
+                        "type": "integer"
+                    },
+                    "new_package_id": {
+                        "type": "integer"
+                    },
+                    "old_price": {
+                        "type": "string"
+                    },
+                    "new_price": {
+                        "type": "string"
+                    },
+                    "currency": {
+                        "type": "string"
+                    },
+                    "error_message": {
+                        "type": "string"
+                    },
+                    "created_at": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "date-time"
+                    },
+                    "updated_at": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "date-time"
+                    }
+                },
+                "required": [
+                    "id",
+                    "service_id",
+                    "status",
+                    "old_package_id",
+                    "new_package_id",
+                    "old_price",
+                    "new_price",
+                    "currency",
+                    "error_message",
+                    "created_at",
+                    "updated_at"
+                ],
+                "title": "ServiceScalingResource"
             },
             "TicketMessageResource": {
                 "type": "object",
@@ -5183,10 +5574,25 @@
                     "status": {
                         "type": "string"
                     },
+                    "plugin_id": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
                     "min_years": {
                         "type": "integer"
                     },
                     "max_years": {
+                        "type": "integer"
+                    },
+                    "grace_period_days": {
+                        "type": "integer"
+                    },
+                    "redemption_period_days": {
+                        "type": "integer"
+                    },
+                    "sort_order": {
                         "type": "integer"
                     },
                     "auto_renew": {
@@ -5217,8 +5623,12 @@
                     "id",
                     "tld",
                     "status",
+                    "plugin_id",
                     "min_years",
                     "max_years",
+                    "grace_period_days",
+                    "redemption_period_days",
+                    "sort_order",
                     "auto_renew",
                     "created_at",
                     "updated_at"
