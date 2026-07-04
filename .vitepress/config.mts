@@ -58,7 +58,43 @@ export default defineConfig({
             { text: 'Packages', link: '/docs/core-concepts/packages' },
             { text: 'Variants', link: '/docs/core-concepts/variants' },
             { text: 'Domains', link: '/docs/core-concepts/domains' },
-            { text: 'Coupons', link: '/docs/core-concepts/coupons' }
+            { text: 'Coupons', link: '/docs/core-concepts/coupons' },
+            { 
+              text: 'Provisionings',
+              link: '/docs/core-concepts/provisionings',
+              collapsed: false,
+              items: [
+                { text: 'Proxmox', link: '/docs/core-concepts/provisionings/proxmox' },
+                { text: 'Pterodactyl', link: '/docs/core-concepts/provisionings/pterodactyl' },
+                { text: 'DirectAdmin', link: '/docs/core-concepts/provisionings/directadmin' }
+              ]
+            },
+            { 
+              text: 'Registrars',
+              link: '/docs/core-concepts/registrars',
+              collapsed: false,
+              items: [
+                { text: 'Handreg', link: '/docs/core-concepts/registrars/handreg' }
+              ]
+            },
+            { 
+              text: 'Gateways',
+              link: '/docs/core-concepts/gateways',
+              collapsed: false,
+              items: [
+                { text: 'PayPal', link: '/docs/core-concepts/gateways/paypal' },
+                { text: 'Duitku', link: '/docs/core-concepts/gateways/duitku' }
+              ]
+            },
+            { 
+              text: 'Modules',
+              link: '/docs/core-concepts/modules',
+              collapsed: false,
+              items: [
+                { text: 'Affiliate', link: '/docs/core-concepts/modules/affiliate' },
+                { text: 'Announcement', link: '/docs/core-concepts/modules/announcement' }
+              ]
+            }
           ]
         },
         {
