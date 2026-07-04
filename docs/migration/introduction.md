@@ -9,7 +9,7 @@ The **Billmora Migrator** is an official data migration tool for transitioning t
 
 ## Overview
 
-The **Billmora Migrator** is a Python-based utility designed to parse SQL dumps from other billing platforms (e.g., WHMCS, Blesta, ClientExec, WemX) and transform them into a fully compatible `billmora_import.sql` file that can be directly imported into your Billmora database.
+The **Billmora Migrator** is a Python-based utility designed to parse SQL dumps from other billing platforms and transform them into a fully compatible `billmora_import.sql` file that can be directly imported into your Billmora database.
 
 It uses a fast, low-memory stream parsing engine and a **Two-Pass Architecture** to handle complex relational data (like multi-currency pricing, configurable options/variants, and service provisioning configurations) without requiring a live database connection to the source platform.
 
@@ -22,7 +22,7 @@ It uses a fast, low-memory stream parsing engine and a **Two-Pass Architecture**
 
 You can specify the source platform using the `--source` argument. Currently supported sources include:
 
-- `whmcs` (More platforms like Blesta, ClientExec, and WemX can be added easily via the extensible extractor/mapper system)
+- `whmcs`
 
 ## Installation
 
