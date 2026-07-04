@@ -51,6 +51,27 @@ export default defineConfig({
           ]
         },
         {
+          text: 'Installation',
+          items: [
+            { text: 'Linux Server', link: '/docs/installation/linux-server' },
+            { text: 'Web Hosting', link: '/docs/installation/web-hosting' }
+          ]
+        },
+        {
+          text: 'Updating',
+          items: [
+            { text: 'One-Click Update (Recommended)', link: '/docs/updating/one-click' },
+            { text: 'Linux Server', link: '/docs/updating/linux-server' },
+            { text: 'Web Hosting', link: '/docs/updating/web-hosting' }
+          ]
+        },
+        {
+          text: 'Migration',
+          items: [
+            { text: 'Introduction', link: '/docs/migration/introduction' }
+          ]
+        },
+        {
           text: 'Core Concepts',
           items: [
             { text: 'Introduction', link: '/docs/core-concepts/introduction' },
@@ -95,27 +116,6 @@ export default defineConfig({
                 { text: 'Announcement', link: '/docs/core-concepts/modules/announcement' }
               ]
             }
-          ]
-        },
-        {
-          text: 'Installation',
-          items: [
-            { text: 'Linux Server', link: '/docs/installation/linux-server' },
-            { text: 'Web Hosting', link: '/docs/installation/web-hosting' }
-          ]
-        },
-        {
-          text: 'Updating',
-          items: [
-            { text: 'One-Click Update (Recommended)', link: '/docs/updating/one-click' },
-            { text: 'Linux Server', link: '/docs/updating/linux-server' },
-            { text: 'Web Hosting', link: '/docs/updating/web-hosting' }
-          ]
-        },
-        {
-          text: 'Migration',
-          items: [
-            { text: 'Introduction', link: '/docs/migration/introduction' }
           ]
         }
       ],
