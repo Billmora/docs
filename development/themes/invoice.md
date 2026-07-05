@@ -10,7 +10,7 @@ The Invoice theme controls the PDF generation and public web-view structure of c
 ## Creating Your Theme
 
 ::: tip Faster Development with CLI
-We highly recommend using the Billmora Artisan CLI to scaffold your theme. It automatically generates the folder, heme.json, Vite configuration, and copies default Blade views as a starting point.
+We highly recommend using the Billmora Artisan CLI to scaffold your theme. It automatically generates the folder, `theme.json`, Vite configuration, and copies default Blade views as a starting point.
 
 ```bash
 php artisan billmora:theme:make mytheme --type=invoice
@@ -66,7 +66,15 @@ Copy the core invoice layout into your custom theme's `views/` directory (e.g., 
 
 Once your invoice theme is complete, you can package it into a ZIP file for installation via the **System > Themes** section of the Admin panel.
 
-For a detailed guide on structuring your theme ZIP, refer to the [Packaging for Distribution](./reference/packaging.md) reference.
+You can easily package your theme using the Billmora Artisan CLI:
+
+```bash
+php artisan billmora:theme:export mytheme --type=invoice
+```
+
+This command will package the theme with the correct directory structure and save the distributable ZIP file to `storage/app/exports/`.
+
+Alternatively, if you want to package it manually, refer to the [Packaging for Distribution](./reference/packaging.md) reference.
 
 ## Full File Structure
 

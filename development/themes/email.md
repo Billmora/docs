@@ -10,7 +10,7 @@ Billmora utilizes customized notification templates for system alerts, welcome e
 ## Creating Your Theme
 
 ::: tip Faster Development with CLI
-We highly recommend using the Billmora Artisan CLI to scaffold your theme. It automatically generates the folder, heme.json, Vite configuration, and copies default Blade views as a starting point.
+We highly recommend using the Billmora Artisan CLI to scaffold your theme. It automatically generates the folder, `theme.json`, Vite configuration, and copies default Blade views as a starting point.
 
 ```bash
 php artisan billmora:theme:make mytheme --type=email
@@ -49,7 +49,15 @@ Place custom Blade files inside the `views/` directory that mirror the relative 
 
 Once your email theme is ready, you can package it into a ZIP file for installation via the **System > Themes** section of the Admin panel.
 
-For details on how to correctly structure your theme ZIP for the installer, refer to the [Packaging for Distribution](./reference/packaging.md) guide.
+You can easily package your theme using the Billmora Artisan CLI:
+
+```bash
+php artisan billmora:theme:export mytheme --type=email
+```
+
+This command will package the theme with the correct directory structure and save the distributable ZIP file to `storage/app/exports/`.
+
+Alternatively, if you want to package it manually, refer to the [Packaging for Distribution](./reference/packaging.md) guide.
 
 ## Full File Structure
 

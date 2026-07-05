@@ -13,11 +13,15 @@ Because of the EDA design, your plugin **never** needs to directly manipulate th
 
 ## 1. Directory Structure & Namespace
 
-::: tip Faster Development with CLI
-We highly recommend using the Billmora Artisan CLI to scaffold your plugin. It automatically generates the folder, plugin.json, and the main PHP class with stub methods.
+::: tip Faster Development & Distribution with CLI
+We highly recommend using the Billmora Artisan CLI to scaffold and package your plugin.
 
 ```bash
+# Scaffold the plugin boilerplate structure
 php artisan billmora:plugin:make myplugin --type=gateway
+
+# Package the plugin into a ZIP file for distribution
+php artisan billmora:plugin:export myplugin --type=gateway
 ```
 
 :::

@@ -10,7 +10,7 @@ The admin theme powers the core dashboard, management interfaces, and settings o
 ## Creating Your Theme
 
 ::: tip Faster Development with CLI
-We highly recommend using the Billmora Artisan CLI to scaffold your theme. It automatically generates the folder, heme.json, Vite configuration, and copies default Blade views as a starting point.
+We highly recommend using the Billmora Artisan CLI to scaffold your theme. It automatically generates the folder, `theme.json`, Vite configuration, and copies default Blade views as a starting point.
 
 ```bash
 php artisan billmora:theme:make mytheme --type=admin
@@ -66,10 +66,15 @@ Any Blade file you place inside the `views/` directory of your theme will strict
 
 Once your admin theme is complete, you can package it into a ZIP file for distribution or installation on other Billmora instances via the **System > Themes** section of the Admin panel.
 
-> [!IMPORTANT]
-> The theme installer expects a specific ZIP file hierarchy. Most importantly, all public assets (CSS/JS) **must** be contained within an `assets/` folder in the ZIP.
+You can easily package your theme using the Billmora Artisan CLI:
 
-For a comprehensive guide on structuring your theme ZIP, refer to the [Packaging for Distribution](./reference/packaging.md) reference.
+```bash
+php artisan billmora:theme:export mytheme --type=admin
+```
+
+This command will automatically build your assets (if applicable), package them with the correct directory structure (placing all public-facing CSS/JS/Image files inside the `assets/` folder), and save the distributable ZIP file to `storage/app/exports/`.
+
+Alternatively, if you want to package it manually, refer to the [Packaging for Distribution](./reference/packaging.md) reference.
 
 ## Full File Structure
 

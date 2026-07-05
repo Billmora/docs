@@ -263,6 +263,22 @@ class MyController extends Controller
 
 ---
 
+---
+
+## 9. Exporting and Packaging
+
+When your plugin is ready for distribution, you can easily package it into a standard ZIP archive compatible with the Billmora Admin Panel's Plugin Installer.
+
+We highly recommend using the Billmora Artisan CLI to package your plugin:
+
+```bash
+php artisan billmora:plugin:export {name} --type={type}
+```
+
+Replace `{name}` with your plugin's provider slug (e.g., `Stripe`, `Pterodactyl`) and `{type}` with the plugin type (`gateway`, `provisioning`, `module`, or `registrar`). The command generates a packaged ZIP file and saves it in `storage/app/exports/`.
+
+---
+
 ## Conclusion
 
 Following these conventions ensures your plugin integrates seamlessly with Billmora core engine. For type-specific implementation details, refer to:

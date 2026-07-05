@@ -7,6 +7,15 @@ description: Learn how to correctly structure and package your Billmora themes i
 
 To distribute your theme or install it using the **Install Theme** button in the Billmora Admin UI, you must package your files into a ZIP archive following a specific directory structure. This ensures that the system correctly identifies the theme and places assets in the appropriate public directories.
 
+::: tip Recommended: Use the CLI
+While you can package your theme manually using the steps below, we highly recommend using the Billmora Artisan CLI to automate the entire build and packaging process. It automatically compiles your assets and generates a ZIP archive with the correct directory structure:
+
+```bash
+php artisan billmora:theme:export {name} --type={type}
+```
+
+:::
+
 ## ZIP Archive Structure
 
 The Billmora theme installer expects the following hierarchy within your ZIP file. You can either place these files at the root of the ZIP or within a single top-level directory (e.g., `my-theme/theme.json`).
@@ -52,11 +61,13 @@ When a theme is installed, the system maps the ZIP contents as follows:
 The Billmora installer handles file placement but **does not run build tools** like Vite or npm. You must compile your assets for production before packaging.
 
 **Recommended build command:**
+
 ```bash
 npx cross-env THEME={type}/{provider} vite build
 ```
 
 After building:
+
 1. Copy the compiled files into the `assets/` directory of your package.
 2. Zip the entire structure.
 

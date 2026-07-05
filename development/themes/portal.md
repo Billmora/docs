@@ -10,7 +10,7 @@ The Portal acts as the public-facing storefront or landing environment for your 
 ## Creating Your Theme
 
 ::: tip Faster Development with CLI
-We highly recommend using the Billmora Artisan CLI to scaffold your theme. It automatically generates the folder, heme.json, Vite configuration, and copies default Blade views as a starting point.
+We highly recommend using the Billmora Artisan CLI to scaffold your theme. It automatically generates the folder, `theme.json`, Vite configuration, and copies default Blade views as a starting point.
 
 ```bash
 php artisan billmora:theme:make mytheme --type=portal
@@ -65,10 +65,15 @@ Place custom Blade files inside the `views/` directory. They will automatically 
 
 Once your theme is ready, you can package it into a ZIP file to be uploaded via the **System > Themes** section of the Billmora Admin UI.
 
-> [!IMPORTANT]
-> The theme installer requires a specific directory structure within the ZIP file. Specifically, all public-facing CSS/JS/Image files **must** be placed inside an `assets/` folder.
+You can easily package your theme using the Billmora Artisan CLI:
 
-For details on how to correctly structure your theme for distribution, refer to the [Packaging for Distribution](./reference/packaging.md) guide.
+```bash
+php artisan billmora:theme:export mytheme --type=portal
+```
+
+This command will automatically build your assets (if applicable), package them with the correct directory structure (placing all public-facing CSS/JS/Image files inside the `assets/` folder), and save the distributable ZIP file to `storage/app/exports/`.
+
+Alternatively, if you want to package it manually, refer to the [Packaging for Distribution](./reference/packaging.md) guide.
 
 ## Full File Structure
 
