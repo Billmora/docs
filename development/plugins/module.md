@@ -2,6 +2,7 @@
 title: Module Plugin Development
 description: Learn how to build Module plugins to extend Billmora's core functionality with custom pages, logic, and webhook integrations.
 ---
+
 # Module Plugin Development
 
 Billmora uses an **Event-Driven Architecture (EDA)** for its module ecosystem. Developing a Module plugin allows you to extend Billmora's functionality with custom features — from simple webhook integrations to full-stack pages with their own database, controllers, and views.
@@ -11,6 +12,15 @@ Because of the EDA design, your plugin can **react to any system-wide event** (i
 ---
 
 ## 1. Directory Structure & Namespace
+
+::: tip Faster Development with CLI
+We highly recommend using the Billmora Artisan CLI to scaffold your plugin. It automatically generates the folder, plugin.json, and the main PHP class with stub methods.
+
+```bash
+php artisan billmora:plugin:make myplugin --type=module
+```
+
+:::
 
 Module plugins must reside within the `plugin/Modules/` directory. If you are building a module called **Example**, your directory layout must look like this:
 
@@ -47,19 +57,20 @@ Every plugin requires a `plugin.json` manifest file. This file tells Billmora's 
 
 ```json
 {
-    "name": "Example Module",
-    "provider": "Example",
-    "type": "module",
-    "version": "1.0.0",
-    "description": "A custom module that extends Billmora functionality.",
-    "author": "Your Name / Team"
+  "name": "Example Module",
+  "provider": "Example",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "A custom module that extends Billmora functionality.",
+  "author": "Your Name / Team"
 }
 ```
 
 ::: info Configuration Metrics
-* **`type`**: Must strictly be `"module"`.
-* **`provider`**: The unique identifier/slug for your module. Must match the directory name.
-:::
+
+- **`type`**: Must strictly be `"module"`.
+- **`provider`**: The unique identifier/slug for your module. Must match the directory name.
+  :::
 
 ---
 
@@ -90,7 +101,7 @@ You don't need to build any HTML forms for your plugin's admin settings. Billmor
 Use the `getConfigSchema()` method to define the settings your module requires.
 
 ::: tip Schema Documentation
-Billmora supports an extensive library of UI components (Selects, Toggles, Radios, Checkboxes, etc.). 
+Billmora supports an extensive library of UI components (Selects, Toggles, Radios, Checkboxes, etc.).
 Please read the [**Plugin Configuration Schema Guide**](./reference/schema.md) to see the full list of supported fields and properties.
 :::
 
@@ -144,7 +155,7 @@ public function onInvoiceCreated(\App\Events\Invoice\Created $event): void
 {
     $invoice = $event->invoice;
     $user = $invoice->user;
-    
+
     // React to the event — send notification, log to external service, etc.
 }
 
@@ -161,12 +172,14 @@ Billmora dispatches 31+ events across Invoice, Order, Service, Ticket, Transacti
 
 ::: info
 If your module does not need to listen to any events (e.g., it only provides pages/routes), return an empty array:
+
 ```php
 public function getSubscribedEvents(): array
 {
     return [];
 }
 ```
+
 :::
 
 ---

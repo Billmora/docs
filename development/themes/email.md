@@ -9,6 +9,15 @@ Billmora utilizes customized notification templates for system alerts, welcome e
 
 ## Creating Your Theme
 
+::: tip Faster Development with CLI
+We highly recommend using the Billmora Artisan CLI to scaffold your theme. It automatically generates the folder, heme.json, Vite configuration, and copies default Blade views as a starting point.
+
+```bash
+php artisan billmora:theme:make mytheme --type=email
+```
+
+:::
+
 1. **Create the Folder:** Make a new directory under `/resources/themes/email/` (e.g., `mytheme`).
 2. **Add `theme.json`:** Every theme requires this metadata file to register property with Billmora. Even though no assets are compiled, the JSON file is mandatory (see section below).
 
@@ -18,11 +27,11 @@ It is mandatory to include a `theme.json` file. Ensure the `type` is set strictl
 
 ```json
 {
-    "name": "My Email Notification Theme",
-    "description": "Customized HTML templates for system alerts.",
-    "author": "Your Name",
-    "version": "1.0.0",
-    "type": "email"
+  "name": "My Email Notification Theme",
+  "description": "Customized HTML templates for system alerts.",
+  "author": "Your Name",
+  "version": "1.0.0",
+  "type": "email"
 }
 ```
 

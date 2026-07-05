@@ -9,6 +9,15 @@ The Portal acts as the public-facing storefront or landing environment for your 
 
 ## Creating Your Theme
 
+::: tip Faster Development with CLI
+We highly recommend using the Billmora Artisan CLI to scaffold your theme. It automatically generates the folder, heme.json, Vite configuration, and copies default Blade views as a starting point.
+
+```bash
+php artisan billmora:theme:make mytheme --type=portal
+```
+
+:::
+
 1. **Create the Folder:** Make a new directory under `/resources/themes/portal/` (e.g., `mytheme`).
 2. **Add `theme.json`:** Define the metadata (see section below).
 3. **Configure Vite:** Handle CSS and JS compilation using Webpack/Vite.
@@ -19,12 +28,12 @@ It is mandatory to include a `theme.json` file. Set the `type` to `"portal"` so 
 
 ```json
 {
-    "name": "My Portal Theme",
-    "description": "A beautiful storefront for hosting sales.",
-    "author": "Your Name",
-    "version": "1.0.0",
-    "type": "portal",
-    "assets": "/themes/portal/mytheme"
+  "name": "My Portal Theme",
+  "description": "A beautiful storefront for hosting sales.",
+  "author": "Your Name",
+  "version": "1.0.0",
+  "type": "portal",
+  "assets": "/themes/portal/mytheme"
 }
 ```
 
@@ -37,11 +46,13 @@ Just like the Client theme, you can allow administrators to customize your Porta
 Because you are compiling isolated assets for a specific portal theme, you must prepend your build commands with the `THEME` environment variable. Using `npx cross-env` is the officially recommended approach.
 
 To build your assets for production:
+
 ```bash
 npx cross-env THEME=portal/mytheme vite build
 ```
 
 To run the Vite development server (HMR):
+
 ```bash
 npx cross-env THEME=portal/mytheme vite dev
 ```

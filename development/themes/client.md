@@ -9,6 +9,15 @@ The client area is where your customers log in, manage their services, and view 
 
 ## Creating Your Theme
 
+::: tip Faster Development with CLI
+We highly recommend using the Billmora Artisan CLI to scaffold your theme. It automatically generates the folder, heme.json, Vite configuration, and copies default Blade views as a starting point.
+
+```bash
+php artisan billmora:theme:make mytheme --type=client
+```
+
+:::
+
 1. **Create the Folder:** Create a new folder under `/resources/themes/client/` (e.g., `mytheme`).
 2. **Add `theme.json`:** Define your theme's metadata and explicitly set the `assets` target (see section below).
 3. **Configure Vite:** Drop in a `vite.config.js` file to handle dynamic compilation of your `css/app.css` and `js/app.js` using Laravel Vite context.
@@ -19,12 +28,12 @@ The `theme.json` file is required for Billmora to register your theme. Ensure th
 
 ```json
 {
-    "name": "My Custom Client Theme",
-    "description": "Bespoke client servicing portal.",
-    "author": "Your Name",
-    "version": "1.0.0",
-    "type": "client",
-    "assets": "/themes/client/mytheme"
+  "name": "My Custom Client Theme",
+  "description": "Bespoke client servicing portal.",
+  "author": "Your Name",
+  "version": "1.0.0",
+  "type": "client",
+  "assets": "/themes/client/mytheme"
 }
 ```
 
@@ -37,11 +46,13 @@ You can allow administrators to customize your theme (e.g., changing colors or t
 Billmora utilizes environment variables via `cross-env` to target specific themes during the build process. We highly recommend using `npx` to execute these commands.
 
 To build your assets for production:
+
 ```bash
 npx cross-env THEME=client/mytheme vite build
 ```
 
 To run the Vite development server with Hot Module Replacement (HMR):
+
 ```bash
 npx cross-env THEME=client/mytheme vite dev
 ```

@@ -2,6 +2,7 @@
 title: Provisioning Plugin Development
 description: Documentation on creating Provisioning plugins to integrate third-party service providers like game hosting and VPS into Billmora.
 ---
+
 # Provisioning Plugin Development
 
 Billmora uses a **Lifecycle-Driven Architecture** for its provisioning ecosystem. Developing a Provisioning plugin allows you to integrate any third-party service provider (game hosting, web hosting, VPS, etc.) directly into Billmora.
@@ -11,6 +12,15 @@ Because of this architecture, your plugin **never** needs to directly update the
 ---
 
 ## 1. Directory Structure & Namespace
+
+::: tip Faster Development with CLI
+We highly recommend using the Billmora Artisan CLI to scaffold your plugin. It automatically generates the folder, plugin.json, and the main PHP class with stub methods.
+
+```bash
+php artisan billmora:plugin:make myplugin --type=provisioning
+```
+
+:::
 
 Provisioning plugins must reside within the `plugin/Provisionings/` directory. If you are building a provisioning called **Example**, your directory layout must look like this:
 
@@ -33,13 +43,13 @@ Every plugin requires a `plugin.json` manifest file. This file tells Billmora's 
 
 ```json
 {
-    "name": "Example Hosting",
-    "provider": "Example",
-    "type": "provisioning",
-    "version": "1.0.0",
-    "description": "Automatically provision and manage hosting services via Example API.",
-    "author": "Your Name / Team",
-    "icon": "https://url-to-your-provider-logo.png"
+  "name": "Example Hosting",
+  "provider": "Example",
+  "type": "provisioning",
+  "version": "1.0.0",
+  "description": "Automatically provision and manage hosting services via Example API.",
+  "author": "Your Name / Team",
+  "icon": "https://url-to-your-provider-logo.png"
 }
 ```
 
@@ -414,6 +424,7 @@ Render via: `view('provisioning.example::client.services.console')`
 Instead of rendering a fully standalone view, you can make your custom page feel **completely native** by extending Billmora's service detail layout. This gives you the standard service header, billing info, and action sidebar for free — your content fills the main workspace area.
 
 To do this, your view should:
+
 1. **Extend** `client::services.show` — the standard service detail layout.
 2. **Yield** to `@section('workspaces')` — the content slot in the main column.
 
@@ -435,11 +446,11 @@ To do this, your view should:
 
 The following variables are automatically available in any `page`-type view:
 
-| Variable | Type | Description |
-| :--- | :--- | :--- |
-| `$service` | `Service` | The full Eloquent service model. |
-| `$slug` | `string` | The slug of the current action being rendered. |
-| `$clientActions` | `array` | The full list of client actions for this service. |
+| Variable         | Type      | Description                                       |
+| :--------------- | :-------- | :------------------------------------------------ |
+| `$service`       | `Service` | The full Eloquent service model.                  |
+| `$slug`          | `string`  | The slug of the current action being rendered.    |
+| `$clientActions` | `array`   | The full list of client actions for this service. |
 
 You may also pass additional variables from your handler:
 
@@ -452,6 +463,7 @@ case 'stats':
         // ... any other data
     ]);
 ```
+
 :::
 
 ::: tip
@@ -635,9 +647,10 @@ Always include a `default` case that throws an exception. This ensures unknown o
 
 ## 10. Error Handling & Auditing
 
-For external API failures, always use **`App\Exceptions\ProvisioningException`** instead of the generic `\Exception`. 
+For external API failures, always use **`App\Exceptions\ProvisioningException`** instead of the generic `\Exception`.
 
 This allows Billmora's core engine to:
+
 1.  Display a **concise, user-friendly message** in the UI alert.
 2.  Record the **full technical response body** in the system audit logs for debugging.
 
@@ -765,11 +778,12 @@ Called **before a package is added to the cart**, after the client has filled in
 | `$fields` | `array` | Data from the package's Custom Fields visible on the order form. |
 
 **Return value:**
+
 - Return `null` to allow the cart action to proceed.
 - Return a `string` error message to block it — Billmora will display this message as a flash error to the client.
 
 > [!WARNING]
-> If this method throws an **exception**, Billmora will block the cart action and display a generic *"Validation service is currently unavailable"* error to the client. Do not throw exceptions for expected validation failures — use the `string` return value instead.
+> If this method throws an **exception**, Billmora will block the cart action and display a generic _"Validation service is currently unavailable"_ error to the client. Do not throw exceptions for expected validation failures — use the `string` return value instead.
 
 ```php
 public function validateBeforeCart(array $configuration, array $fields): ?string

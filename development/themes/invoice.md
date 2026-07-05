@@ -9,6 +9,15 @@ The Invoice theme controls the PDF generation and public web-view structure of c
 
 ## Creating Your Theme
 
+::: tip Faster Development with CLI
+We highly recommend using the Billmora Artisan CLI to scaffold your theme. It automatically generates the folder, heme.json, Vite configuration, and copies default Blade views as a starting point.
+
+```bash
+php artisan billmora:theme:make mytheme --type=invoice
+```
+
+:::
+
 1. **Create the Folder:** Set up a new directory under `/resources/themes/invoice/` (e.g., `mytheme`).
 2. **Add `theme.json`:** Even though invoices don't compile external JS/CSS assets, you MUST include a `theme.json` file for Billmora to register the theme (see section below).
 
@@ -18,11 +27,11 @@ The `theme.json` file must reflect the `"invoice"` type. The `assets` property i
 
 ```json
 {
-    "name": "My Clean Invoice Theme",
-    "description": "Minimalist invoice layouts suitable for print.",
-    "author": "Your Name",
-    "version": "1.0.0",
-    "type": "invoice"
+  "name": "My Clean Invoice Theme",
+  "description": "Minimalist invoice layouts suitable for print.",
+  "author": "Your Name",
+  "version": "1.0.0",
+  "type": "invoice"
 }
 ```
 
@@ -34,18 +43,18 @@ You are fully supported to use `<style>` blocks with standard class-based CSS wi
 
 ```html
 <style>
-    .invoice-header {
-        background-color: #f8fafc;
-        border-bottom: 2px solid #e2e8f0;
-    }
-    .invoice-table th {
-        font-weight: bold;
-        text-align: left;
-    }
+  .invoice-header {
+    background-color: #f8fafc;
+    border-bottom: 2px solid #e2e8f0;
+  }
+  .invoice-table th {
+    font-weight: bold;
+    text-align: left;
+  }
 </style>
 
 <div class="invoice-header">
-    <!-- Invoice content here -->
+  <!-- Invoice content here -->
 </div>
 ```
 

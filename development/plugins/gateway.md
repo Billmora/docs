@@ -2,6 +2,7 @@
 title: Gateway Plugin Development
 description: Guide for developing Gateway plugins to integrate third-party payment processors into Billmora's event-driven architecture.
 ---
+
 # Gateway Plugin Development
 
 Billmora employs an enterprise-grade, **Event-Driven Architecture (EDA)** for its payment gateway ecosystem. Developing a Gateway plugin allows you to integrate any third-party payment processor directly into Billmora with minimal friction.
@@ -11,6 +12,15 @@ Because of the EDA design, your plugin **never** needs to directly manipulate th
 ---
 
 ## 1. Directory Structure & Namespace
+
+::: tip Faster Development with CLI
+We highly recommend using the Billmora Artisan CLI to scaffold your plugin. It automatically generates the folder, plugin.json, and the main PHP class with stub methods.
+
+```bash
+php artisan billmora:plugin:make myplugin --type=gateway
+```
+
+:::
 
 Gateway plugins must reside within the `plugin/Gateways/` directory. If you are building a gateway called **Example**, your directory layout must look like this:
 
@@ -36,21 +46,22 @@ Every plugin requires a `plugin.json` manifest file. This file tells Billmora's 
 
 ```json
 {
-    "name": "Example Checkout",
-    "provider": "Example",
-    "type": "gateway",
-    "version": "1.0.0",
-    "description": "Accept credit card payments worldwide via Example API.",
-    "author": "Your Name / Team",
-    "icon": "https://url-to-your-gateway-logo.png"
+  "name": "Example Checkout",
+  "provider": "Example",
+  "type": "gateway",
+  "version": "1.0.0",
+  "description": "Accept credit card payments worldwide via Example API.",
+  "author": "Your Name / Team",
+  "icon": "https://url-to-your-gateway-logo.png"
 }
 ```
 
 ::: info Configuration Metrics
-* **`type`**: Must strictly be `"gateway"`.
-* **`provider`**: The unique identifier/slug for your gateway.
-* **`icon`**: An absolute URL to the gateway's logo, which will be displayed on the client checkout page.
-:::
+
+- **`type`**: Must strictly be `"gateway"`.
+- **`provider`**: The unique identifier/slug for your gateway.
+- **`icon`**: An absolute URL to the gateway's logo, which will be displayed on the client checkout page.
+  :::
 
 ---
 
@@ -83,7 +94,7 @@ You don't need to build any HTML forms for your plugin's admin settings. Billmor
 Use the `getConfigSchema()` method to define the credentials your gateway requires.
 
 ::: tip Schema Documentation
-Billmora supports an extensive library of UI components (Selects, Toggles, Radios, Checkboxes, etc.). 
+Billmora supports an extensive library of UI components (Selects, Toggles, Radios, Checkboxes, etc.).
 Please read the [**Plugin Reference Schema Guide**](./reference/schema.md) to see the full list of supported fields and properties.
 :::
 
@@ -148,27 +159,28 @@ If your gateway supports all currencies and amounts, simply `return true;`.
 
 This method is triggered when the client clicks **"Pay Now"**. You must use your gateway's API to generate a payment session or token. Billmora's `PaymentController` calls this method and passes the following parameters:
 
-| Parameter | Type | Description |
-|-----------|------|-------------|
+| Parameter        | Type     | Description                                      |
+| ---------------- | -------- | ------------------------------------------------ |
 | `$invoiceNumber` | `string` | The Billmora invoice number (e.g., `INV-00001`). |
-| `$amount` | `float` | The total amount due on the invoice. |
-| `$currency` | `string` | ISO 4217 currency code (e.g., `IDR`, `USD`). |
-| `$options` | `array` | Additional context (see below). |
+| `$amount`        | `float`  | The total amount due on the invoice.             |
+| `$currency`      | `string` | ISO 4217 currency code (e.g., `IDR`, `USD`).     |
+| `$options`       | `array`  | Additional context (see below).                  |
 
 **The `$options` array contains:**
 
-| Key | Type | Description |
-|-----|------|-------------|
+| Key           | Type     | Description                                                                  |
+| ------------- | -------- | ---------------------------------------------------------------------------- |
 | `description` | `string` | Auto-generated payment description (e.g., `Payment for Invoice #INV-00001`). |
-| `user` | `array` | The authenticated user's data (name, email, billing address, etc.). |
-| `items` | `array` | Invoice line items with descriptions and amounts. |
-| `return_url` | `string` | URL to redirect the user back to the invoice page after payment. |
+| `user`        | `array`  | The authenticated user's data (name, email, billing address, etc.).          |
+| `items`       | `array`  | Invoice line items with descriptions and amounts.                            |
+| `return_url`  | `string` | URL to redirect the user back to the invoice page after payment.             |
 
 ::: warning Important Callback URLs
 Always pass Billmora's core webhook/return URLs to your gateway provider so they know where to send the user or API payload after payment:
+
 - **Webhook URL:** `route('api.gateways.webhook', ['plugin' => $this->getPluginModel()->id])`
 - **Return URL:** `route('client.gateways.return', ['plugin' => $this->getPluginModel()->id])`
-:::
+  :::
 
 Billmora supports two rendering modes for the client checkout experience. The `pay()` method must return an array with the following structure:
 
@@ -191,7 +203,7 @@ If your gateway generates a hosted checkout URL (like standard PayPal or Stripe 
 public function pay(string $invoiceNumber, float $amount, string $currency, array $options = []): mixed
 {
     $secretKey = $this->getInstanceConfig('secret_key');
-    
+
     // Call your Gateway's API to generate a checkout session...
     $session = Http::withHeaders([
         'Authorization' => 'Bearer ' . $secretKey,
@@ -266,6 +278,7 @@ Billmora explicitly separates background server webhooks from browser-based redi
 
 ::: info Security
 Billmora's `CallbackController` automatically handles all security layers for you:
+
 - **Audit logging**: Every incoming webhook and return payload is recorded to the system audit log.
 - **Plugin validation**: The controller verifies the plugin exists, is active, and is of type `gateway`.
 - **Error containment**: All exceptions are caught, reported, and returned as appropriate HTTP responses.
@@ -282,6 +295,7 @@ When these methods are triggered, you **must** return the `GatewayCallbackRespon
 Triggered by server-to-server HTTP POST requests from the gateway provider. There is **no active user session** here — no cookies, no CSRF token, no browser.
 
 **What happens internally:**
+
 1. The `CallbackController` receives the raw request.
 2. Your `webhook()` method parses and verifies the payload.
 3. If `isValid` and `isSuccess` are both `true`, Billmora dispatches the `PaymentCaptured` event.
@@ -294,10 +308,10 @@ public function webhook(Request $request): GatewayCallbackResponse
     // 1. Verify cryptographic signature to prevent spoofing
     $expectedSignature = hash_hmac('sha256', $request->getContent(), $this->getInstanceConfig('secret_key'));
     $isValidSignature = hash_equals($expectedSignature, $request->header('X-Signature', ''));
-    
+
     // 2. Parse the payment data
     $paymentStatus = $request->input('payment_status');
-    
+
     // 3. Return the parsed data to Billmora
     return new GatewayCallbackResponse(
         isValid: $isValidSignature,
@@ -321,6 +335,7 @@ Never throw exceptions inside `webhook()`. Always return a `GatewayCallbackRespo
 Triggered when the user is explicitly redirected back to Billmora via **GET** request after leaving the gateway's hosted checkout page. This route has full Laravel session and cookie support.
 
 **What happens internally:**
+
 1. The `CallbackController` receives the browser redirect.
 2. Your `return()` method parses the query parameters.
 3. If `isValid` and `isSuccess` are both `true`, Billmora dispatches the `PaymentCaptured` event.
@@ -371,21 +386,22 @@ new GatewayCallbackResponse(
 
 ### Property Reference
 
-| Property | Type | Required | Default | Description |
-|----------|------|----------|---------|-------------|
-| `isValid` | `bool` | ✅ | — | `true` if the payload signature passes your security checks. Prevents fake callbacks. |
-| `isSuccess` | `bool` | | `false` | `true` if the original payment was successfully captured/paid. |
-| `orderNumber` | `string` | | `''` | The target Billmora Invoice Number (e.g., `INV-00001`). |
-| `gatewayReference` | `string?` | | `null` | The unique Transaction ID from the gateway server. Stored for reconciliation. |
-| `amount` | `float` | | `0.0` | The total monetary amount successfully captured. |
-| `fee` | `float` | | `0.0` | Transaction fees explicitly charged by the gateway provider. |
-| `redirectUrl` | `string?` | | `null` | Forces the user's browser redirect. **Only used inside `return()`**, ignored inside `webhook()`. |
+| Property           | Type      | Required | Default | Description                                                                                      |
+| ------------------ | --------- | -------- | ------- | ------------------------------------------------------------------------------------------------ |
+| `isValid`          | `bool`    | ✅       | —       | `true` if the payload signature passes your security checks. Prevents fake callbacks.            |
+| `isSuccess`        | `bool`    |          | `false` | `true` if the original payment was successfully captured/paid.                                   |
+| `orderNumber`      | `string`  |          | `''`    | The target Billmora Invoice Number (e.g., `INV-00001`).                                          |
+| `gatewayReference` | `string?` |          | `null`  | The unique Transaction ID from the gateway server. Stored for reconciliation.                    |
+| `amount`           | `float`   |          | `0.0`   | The total monetary amount successfully captured.                                                 |
+| `fee`              | `float`   |          | `0.0`   | Transaction fees explicitly charged by the gateway provider.                                     |
+| `redirectUrl`      | `string?` |          | `null`  | Forces the user's browser redirect. **Only used inside `return()`**, ignored inside `webhook()`. |
 
 ::: warning Critical: `isValid` vs `isSuccess`
 These two flags serve different purposes:
+
 - **`isValid`**: "Is this callback payload authentic and not forged?" — Set to `false` if signature verification fails. Billmora will respond with HTTP 400 and **not** process any payment.
 - **`isSuccess`**: "Did the payment actually succeed?" — Set to `false` if the customer cancelled, payment was declined, or the capture failed. Billmora will acknowledge the webhook but **not** mark the invoice as paid.
-:::
+  :::
 
 ---
 

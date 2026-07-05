@@ -13,6 +13,15 @@ Because of this architecture, your plugin **never** needs to directly manipulate
 
 ## 1. Directory Structure & Namespace
 
+::: tip Faster Development with CLI
+We highly recommend using the Billmora Artisan CLI to scaffold your plugin. It automatically generates the folder, plugin.json, and the main PHP class with stub methods.
+
+```bash
+php artisan billmora:plugin:make myplugin --type=registrar
+```
+
+:::
+
 Registrar plugins must reside within the `plugin/Registrars/` directory. If you are building a registrar called **Example**, your directory layout must look like this:
 
 ```text
@@ -36,13 +45,13 @@ Every plugin requires a `plugin.json` manifest file. This file tells Billmora co
 
 ```json
 {
-    "name": "Example Registrar",
-    "provider": "Example",
-    "type": "registrar",
-    "version": "1.0.0",
-    "description": "Register and manage domains via Example API.",
-    "author": "Your Name / Team",
-    "icon": "https://url-to-your-registrar-logo.png"
+  "name": "Example Registrar",
+  "provider": "Example",
+  "type": "registrar",
+  "version": "1.0.0",
+  "description": "Register and manage domains via Example API.",
+  "author": "Your Name / Team",
+  "icon": "https://url-to-your-registrar-logo.png"
 }
 ```
 
@@ -51,7 +60,7 @@ Every plugin requires a `plugin.json` manifest file. This file tells Billmora co
 - **`type`**: Must strictly be `"registrar"`.
 - **`provider`**: The unique identifier/slug for your registrar plugin.
 - **`icon`**: An absolute URL to the registrar logo, which will be displayed in the Admin Panel.
-:::
+  :::
 
 ---
 
@@ -125,19 +134,19 @@ public function testConnection(array $config): bool
     if (empty($config["api_key"])) {
         throw new RegistrarException("API Key is required.");
     }
-    
+
     // Test API connectivity
     $response = Http::withHeaders([
         "Authorization" => "Bearer " . $config["api_key"],
     ])->get($this->url("/account/test"));
-    
+
     if (!$response->successful()) {
         throw new RegistrarException(
             "Failed to connect to registrar API: " . $response->status(),
             ["response" => $response->json() ?: $response->body()]
         );
     }
-    
+
     return true;
 }
 ```
@@ -159,16 +168,16 @@ public function checkAvailability(string $domain): array
         ->get($this->url("/domains/check"), [
             "domain" => $domain,
         ]);
-    
+
     if (!$response->successful()) {
         throw new RegistrarException(
             "Failed to check domain availability",
             ["response" => $response->body()]
         );
     }
-    
+
     $data = $response->json();
-    
+
     return [
         "available" => $data["available"] ?? false,
         "premium" => $data["premium"] ?? false,
@@ -179,11 +188,11 @@ public function checkAvailability(string $domain): array
 
 ### Return Value Reference
 
-| Property | Type | Required | Default | Description |
-|----------|------|----------|---------|-------------|
-| `available` | `bool` | ✅ | — | `true` if the domain is available for registration |
-| `premium` | `bool` | | `false` | `true` if the domain is a premium domain with special pricing |
-| `price` | `float?` | | `null` | The registration price (only required for premium domains) |
+| Property    | Type     | Required | Default | Description                                                   |
+| ----------- | -------- | -------- | ------- | ------------------------------------------------------------- |
+| `available` | `bool`   | ✅       | —       | `true` if the domain is available for registration            |
+| `premium`   | `bool`   |          | `false` | `true` if the domain is a premium domain with special pricing |
+| `price`     | `float?` |          | `null`  | The registration price (only required for premium domains)    |
 
 ---
 
@@ -195,7 +204,7 @@ The `create()` method is called when a new domain registration is purchased. Thi
 public function create(Registrant $registrant): void
 {
     $sandbox = $this->getInstanceConfig("sandbox", false);
-    
+
     $payload = [
         "domain" => $registrant->domain,
         "years" => $registrant->years,
@@ -211,27 +220,27 @@ public function create(Registrant $registrant): void
         ],
         "nameservers" => $registrant->nameservers ?? [],
     ];
-    
+
     $response = Http::withHeaders($this->headers())
         ->post($this->url("/domains/register"), $payload);
-    
+
     if (!$response->successful()) {
         throw new RegistrarException(
             "Failed to register domain " . $registrant->domain,
             ["response" => $response->body()]
         );
     }
-    
+
     $data = $response->json();
-    
+
     // Store the registrar domain ID for future operations
     $configuration = $registrant->configuration ?? [];
     $configuration["registrar_domain_id"] = $data["id"];
-    
+
     $registrant->update([
         "configuration" => $configuration
     ]);
-    
+
     Log::info("[Example] Domain registered", [
         "domain" => $registrant->domain,
         "registrar_id" => $data["id"],
@@ -261,23 +270,23 @@ public function transfer(Registrant $registrant, string $eppCode): void
             // ... other contact details
         ],
     ];
-    
+
     $response = Http::withHeaders($this->headers())
         ->post($this->url("/domains/transfer"), $payload);
-    
+
     if (!$response->successful()) {
         throw new RegistrarException(
             "Failed to initiate transfer for " . $registrant->domain,
             ["response" => $response->body()]
         );
     }
-    
+
     $data = $response->json();
-    
+
     $configuration = $registrant->configuration ?? [];
     $configuration["registrar_domain_id"] = $data["id"];
     $configuration["transfer_status"] = "pending";
-    
+
     $registrant->update([
         "configuration" => $configuration
     ]);
@@ -298,25 +307,25 @@ The `renew()` method is called when a domain renewal is processed. The second pa
 public function renew(Registrant $registrant, int $years = 1): void
 {
     $registrarId = $registrant->configuration["registrar_domain_id"] ?? null;
-    
+
     if (!$registrarId) {
         throw new RegistrarException(
             "Registrar domain ID not found for " . $registrant->domain
         );
     }
-    
+
     $response = Http::withHeaders($this->headers())
         ->post($this->url("/domains/" . $registrarId . "/renew"), [
             "years" => $years,
         ]);
-    
+
     if (!$response->successful()) {
         throw new RegistrarException(
             "Failed to renew domain " . $registrant->domain,
             ["response" => $response->body()]
         );
     }
-    
+
     Log::info("[Example] Domain renewed", [
         "domain" => $registrant->domain,
         "years" => $years,
@@ -336,21 +345,21 @@ Return the current nameservers for a domain.
 public function getNameservers(Registrant $registrant): array
 {
     $registrarId = $registrant->configuration["registrar_domain_id"] ?? null;
-    
+
     if (!$registrarId) {
         return ["ns1.example.com", "ns2.example.com"];
     }
-    
+
     $response = Http::withHeaders($this->headers())
         ->get($this->url("/domains/" . $registrarId . "/nameservers"));
-    
+
     if (!$response->successful()) {
         throw new RegistrarException(
             "Failed to fetch nameservers for " . $registrant->domain,
             ["response" => $response->body()]
         );
     }
-    
+
     return $response->json("nameservers", []);
 }
 ```
@@ -367,29 +376,29 @@ Update the nameservers for a domain.
 public function setNameservers(Registrant $registrant, array $nameservers): void
 {
     $registrarId = $registrant->configuration["registrar_domain_id"] ?? null;
-    
+
     if (!$registrarId) {
         throw new RegistrarException(
             "Registrar domain ID not found for " . $registrant->domain
         );
     }
-    
+
     $response = Http::withHeaders($this->headers())
         ->put($this->url("/domains/" . $registrarId . "/nameservers"), [
             "nameservers" => $nameservers,
         ]);
-    
+
     if (!$response->successful()) {
         throw new RegistrarException(
             "Failed to update nameservers for " . $registrant->domain,
             ["response" => $response->body()]
         );
     }
-    
+
     // Update local configuration
     $configuration = $registrant->configuration ?? [];
     $configuration["nameservers"] = $nameservers;
-    
+
     $registrant->update([
         "configuration" => $configuration
     ]);
@@ -410,26 +419,26 @@ The `syncStatus()` method is called periodically to sync the domain status from 
 public function syncStatus(Registrant $registrant): array
 {
     $registrarId = $registrant->configuration["registrar_domain_id"] ?? null;
-    
+
     if (!$registrarId) {
         return [
             "status" => $registrant->status,
             "expires_at" => $registrant->expires_at?->toDateTimeString(),
         ];
     }
-    
+
     $response = Http::withHeaders($this->headers())
         ->get($this->url("/domains/" . $registrarId));
-    
+
     if (!$response->successful()) {
         throw new RegistrarException(
             "Failed to sync status for " . $registrant->domain,
             ["response" => $response->body()]
         );
     }
-    
+
     $data = $response->json();
-    
+
     // Map registrar status to Billmora status
     $statusMap = [
         "active" => "active",
@@ -438,9 +447,9 @@ public function syncStatus(Registrant $registrant): array
         "transferred" => "active",
         "cancelled" => "cancelled",
     ];
-    
+
     $status = $statusMap[$data["status"]] ?? $registrant->status;
-    
+
     return [
         "status" => $status,
         "expires_at" => $data["expiration_date"] ?? $registrant->expires_at?->toDateTimeString(),
@@ -450,10 +459,10 @@ public function syncStatus(Registrant $registrant): array
 
 ### Return Value Reference
 
-| Property | Type | Description |
-|----------|------|-------------|
-| `status` | `string` | The synced domain status (active, expired, pending_transfer, cancelled) |
-| `expires_at` | `string?` | The expiration date in datetime format (YYYY-MM-DD HH:MM:SS) |
+| Property     | Type      | Description                                                             |
+| ------------ | --------- | ----------------------------------------------------------------------- |
+| `status`     | `string`  | The synced domain status (active, expired, pending_transfer, cancelled) |
+| `expires_at` | `string?` | The expiration date in datetime format (YYYY-MM-DD HH:MM:SS)            |
 
 ::: tip
 Billmora automatically updates the registrant status and expiration date based on the values returned by this method.
@@ -466,6 +475,7 @@ Billmora automatically updates the registrant status and expiration date based o
 For external API failures, always use **`App\Exceptions\RegistrarException`** instead of the generic `\Exception`.
 
 This allows Billmora core engine to:
+
 1. Display a **concise, user-friendly message** in the UI alert.
 2. Record the **full technical response body** in the system audit logs for debugging.
 
@@ -514,10 +524,10 @@ Many registrars provide sandbox environments for testing. Use the configuration 
 private function url(string $path): string
 {
     $sandbox = $this->getInstanceConfig("sandbox", false);
-    $baseUrl = $sandbox 
-        ? "https://api-sandbox.example.com" 
+    $baseUrl = $sandbox
+        ? "https://api-sandbox.example.com"
         : "https://api.example.com";
-    
+
     return $baseUrl . $path;
 }
 ```
@@ -548,11 +558,12 @@ Called **before a domain is added to the cart**, after the client has selected t
 | `$eppCode` | `string\|null` | The EPP code provided by the client. `null` for registrations. |
 
 **Return value:**
+
 - Return `null` to allow the cart action to proceed.
 - Return a `string` error message to block it — Billmora will display this message as a flash error to the client.
 
 > [!WARNING]
-> If this method throws an **exception**, Billmora will block the cart action and display a generic *"Validation service is currently unavailable"* error to the client. Do not throw exceptions for expected validation failures — use the `string` return value instead.
+> If this method throws an **exception**, Billmora will block the cart action and display a generic _"Validation service is currently unavailable"_ error to the client. Do not throw exceptions for expected validation failures — use the `string` return value instead.
 
 ```php
 public function validateBeforeCart(string $domain, string $type, ?string $eppCode): ?string

@@ -9,6 +9,15 @@ The admin theme powers the core dashboard, management interfaces, and settings o
 
 ## Creating Your Theme
 
+::: tip Faster Development with CLI
+We highly recommend using the Billmora Artisan CLI to scaffold your theme. It automatically generates the folder, heme.json, Vite configuration, and copies default Blade views as a starting point.
+
+```bash
+php artisan billmora:theme:make mytheme --type=admin
+```
+
+:::
+
 1. **Create the Folder:** Create a new folder under `/resources/themes/admin/` (e.g., `mytheme`).
 2. **Add `theme.json`:** Define your theme's metadata (see section below).
 3. **Configure Vite:** Copy an existing `vite.config.js` into your new theme folder to handle Tailwind CSS and JS compilation.
@@ -19,12 +28,12 @@ The `theme.json` file is required in the root of your theme folder for Billmora 
 
 ```json
 {
-    "name": "My Custom Admin Theme",
-    "description": "A customized back-office experience.",
-    "author": "Your Name",
-    "version": "1.0.0",
-    "type": "admin",
-    "assets": "/themes/admin/mytheme"
+  "name": "My Custom Admin Theme",
+  "description": "A customized back-office experience.",
+  "author": "Your Name",
+  "version": "1.0.0",
+  "type": "admin",
+  "assets": "/themes/admin/mytheme"
 }
 ```
 
@@ -37,11 +46,13 @@ If you wish to allow Super Administrators to customize aspects of your Admin the
 Because Billmora relies on environment variables to compile the correct theme, it is **highly recommended** to use `npx cross-env` to ensure cross-platform compatibility when building your theme.
 
 To build your assets for production, run:
+
 ```bash
 npx cross-env THEME=admin/mytheme vite build
 ```
 
 To run the Vite dev server with hot-module replacement (HMR), run:
+
 ```bash
 npx cross-env THEME=admin/mytheme vite dev
 ```
