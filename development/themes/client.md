@@ -81,84 +81,101 @@ Below is an overview of a fully configured Client theme, taking the core `morain
 
 ```text
 /resources/themes/client/moraine/
-├── css
-│   └── app.css
-├── js
-│   └── app.js
-├── views
-│   ├── account
-│   │   ├── credit.blade.php
-│   │   ├── security.blade.php
-│   │   └── settings.blade.php
-│   ├── auth
-│   │   ├── password
-│   │   │   ├── forgot.blade.php
-│   │   │   └── reset.blade.php
-│   │   ├── two-factor
-│   │   │   ├── backup.blade.php
-│   │   │   ├── recovery.blade.php
-│   │   │   ├── setup.blade.php
-│   │   │   └── verify.blade.php
-│   │   ├── login.blade.php
-│   │   └── register.blade.php
-│   ├── checkout
-│   │   ├── cart.blade.php
-│   │   └── complete.blade.php
-│   ├── components
-│   │   ├── editor
-│   │   │   └── text.blade.php
-│   │   ├── modal
-│   │   │   ├── content.blade.php
-│   │   │   └── trigger.blade.php
-│   │   ├── radio
-│   │   │   ├── group.blade.php
-│   │   │   └── option.blade.php
-│   │   ├── alert.blade.php
-│   │   ├── captcha.blade.php
-│   │   ├── checkbox.blade.php
-│   │   ├── input.blade.php
-│   │   ├── select.blade.php
-│   │   ├── slider.blade.php
-│   │   ├── textarea.blade.php
-│   │   └── toggle.blade.php
-│   ├── invoices
-│   │   ├── index.blade.php
-│   │   └── show.blade.php
-│   ├── layouts
-│   │   ├── partials
-│   │   │   ├── footer.blade.php
-│   │   │   ├── header.blade.php
-│   │   │   ├── pagination.blade.php
-│   │   │   └── sidebar.blade.php
-│   │   ├── app.blade.php
-│   │   ├── meta.blade.php
-│   │   └── script.blade.php
-│   ├── livewire
-│   │   ├── service
-│   │   │   └── scaling-wizard.blade.php
-│   │   └── store
-│   │       └── package-checkout.blade.php
-│   ├── services
-│   │   ├── workspaces
-│   │   │   ├── cancellation.blade.php
-│   │   │   ├── overview.blade.php
-│   │   │   ├── provisioning.blade.php
-│   │   │   └── scaling.blade.php
-│   │   ├── index.blade.php
-│   │   └── show.blade.php
-│   ├── store
-│   │   ├── catalog
-│   │   │   └── index.blade.php
-│   │   ├── package
-│   │   │   └── show.blade.php
-│   │   └── index.blade.php
-│   ├── tickets
-│   │   ├── reply
-│   │   │   └── index.blade.php
-│   │   ├── create.blade.php
-│   │   └── index.blade.php
+config.blade.php
+theme.json
+vite.config.js
+css
+└── app.css
+js
+├── app.js
+└── editor.js
+views
+├── index.blade.php
+├── maintenance.blade.php
+├── account
+│   ├── credit.blade.php
+│   ├── security.blade.php
+│   └── settings.blade.php
+├── auth
+│   ├── login.blade.php
+│   ├── register.blade.php
+│   ├── password
+│   │   ├── forgot.blade.php
+│   │   └── reset.blade.php
+│   └── two-factor
+│       ├── backup.blade.php
+│       ├── recovery.blade.php
+│       ├── setup.blade.php
+│       └── verify.blade.php
+├── checkout
+│   ├── cart.blade.php
+│   └── complete.blade.php
+├── components
+│   ├── alert.blade.php
+│   ├── captcha.blade.php
+│   ├── checkbox.blade.php
+│   ├── input.blade.php
+│   ├── select.blade.php
+│   ├── slider.blade.php
+│   ├── textarea.blade.php
+│   ├── toggle.blade.php
+│   ├── editor
+│   │   └── text.blade.php
+│   ├── modal
+│   │   ├── content.blade.php
+│   │   └── trigger.blade.php
+│   └── radio
+│       ├── group.blade.php
+│       └── option.blade.php
+├── domains
+│   └── workspaces
+├── invoices
 │   ├── index.blade.php
-│   └── maintenance.blade.php
-├── theme.json
-└── vite.config.js
+│   └── show.blade.php
+├── layouts
+│   ├── app.blade.php
+│   ├── meta.blade.php
+│   ├── script.blade.php
+│   └── partials
+│       ├── footer.blade.php
+│       ├── header.blade.php
+│       ├── pagination.blade.php
+│       └── sidebar.blade.php
+├── livewire
+│   ├── service
+│   │   └── scaling-wizard.blade.php
+│   └── store
+│       ├── domain-configure.blade.php
+│       ├── domain-search.blade.php
+│       └── package-checkout.blade.php
+├── registrants
+│   ├── index.blade.php
+│   ├── show.blade.php
+│   └── workspaces
+│       ├── autorenew.blade.php
+│       ├── nameservers.blade.php
+│       ├── overview.blade.php
+│       └── registrar.blade.php
+├── services
+│   ├── index.blade.php
+│   ├── show.blade.php
+│   └── workspaces
+│       ├── cancellation.blade.php
+│       ├── overview.blade.php
+│       ├── provisioning.blade.php
+│       └── scaling.blade.php
+├── store
+│   ├── index.blade.php
+│   ├── catalog
+│   │   └── index.blade.php
+│   ├── domains
+│   │   ├── index.blade.php
+│   │   └── show.blade.php
+│   └── package
+│       └── show.blade.php
+└── tickets
+    ├── create.blade.php
+    ├── index.blade.php
+    └── reply
+        └── index.blade.php
 ```

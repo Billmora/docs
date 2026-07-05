@@ -82,206 +82,237 @@ Below is an overview of a fully configured Admin theme, taking the core `moraine
 
 ```text
 /resources/themes/admin/moraine/
-├── css
-│   └── app.css
-├── js
-│   └── app.js
-├── views
-│   ├── audits
-│   │   ├── email
-│   │   │   ├── index.blade.php
-│   │   │   └── show.blade.php
-│   │   ├── system
-│   │   │   ├── index.blade.php
-│   │   │   └── show.blade.php
-│   │   ├── user
-│   │   │   └── index.blade.php
-│   │   └── index.blade.php
-│   ├── automations
-│   │   └── index.blade.php
-│   ├── broadcasts
-│   │   ├── create.blade.php
-│   │   ├── edit.blade.php
-│   │   └── index.blade.php
-│   ├── catalogs
-│   │   ├── create.blade.php
-│   │   ├── edit.blade.php
-│   │   └── index.blade.php
-│   ├── components
-│   │   ├── editor
-│   │   │   └── text.blade.php
-│   │   ├── modal
-│   │   │   ├── content.blade.php
-│   │   │   └── trigger.blade.php
-│   │   ├── radio
-│   │   │   ├── group.blade.php
-│   │   │   └── option.blade.php
-│   │   ├── table
-│   │   │   └── sorthead.blade.php
-│   │   ├── alert.blade.php
-│   │   ├── browse.blade.php
-│   │   ├── checkbox.blade.php
-│   │   ├── input.blade.php
-│   │   ├── multiselect.blade.php
-│   │   ├── select.blade.php
-│   │   ├── singleselect.blade.php
-│   │   ├── slider.blade.php
-│   │   ├── tabs.blade.php
-│   │   ├── tags.blade.php
-│   │   ├── textarea.blade.php
-│   │   └── toggle.blade.php
-│   ├── coupons
-│   │   ├── create.blade.php
-│   │   ├── edit.blade.php
-│   │   └── index.blade.php
-│   ├── gateways
-│   │   ├── create.blade.php
-│   │   ├── edit.blade.php
-│   │   └── index.blade.php
-│   ├── invoices
-│   │   ├── refund
-│   │   │   └── index.blade.php
-│   │   ├── transaction
-│   │   │   ├── create.blade.php
-│   │   │   └── index.blade.php
-│   │   ├── create.blade.php
-│   │   ├── edit.blade.php
-│   │   └── index.blade.php
-│   ├── layouts
-│   │   ├── partials
-│   │   │   ├── footer.blade.php
-│   │   │   ├── header.blade.php
-│   │   │   ├── pagination.blade.php
-│   │   │   └── sidebar.blade.php
-│   │   ├── app.blade.php
-│   │   ├── meta.blade.php
-│   │   └── script.blade.php
-│   ├── livewire
-│   │   ├── invoices
-│   │   │   ├── invoice-create.blade.php
-│   │   │   └── invoice-edit.blade.php
-│   │   ├── orders
-│   │   │   └── order-create.blade.php
-│   │   ├── services
-│   │   │   └── service-edit.blade.php
-│   │   └── variants
-│   │       ├── option-create.blade.php
-│   │       └── option-edit.blade.php
-│   ├── modules
-│   │   ├── create.blade.php
-│   │   ├── edit.blade.php
-│   │   └── index.blade.php
-│   ├── orders
-│   │   ├── create.blade.php
-│   │   ├── edit.blade.php
-│   │   └── index.blade.php
-│   ├── packages
-│   │   ├── pricing
-│   │   │   ├── create.blade.php
-│   │   │   ├── edit.blade.php
-│   │   │   └── index.blade.php
-│   │   ├── provisioning
-│   │   │   └── index.blade.php
-│   │   ├── scaling
-│   │   │   └── index.blade.php
-│   │   ├── create.blade.php
-│   │   ├── edit.blade.php
-│   │   └── index.blade.php
-│   ├── plugins
-│   │   └── index.blade.php
-│   ├── provisionings
-│   │   ├── create.blade.php
-│   │   ├── edit.blade.php
-│   │   └── index.blade.php
-│   ├── services
-│   │   ├── cancellations
-│   │   │   ├── edit.blade.php
-│   │   │   └── index.blade.php
-│   │   ├── edit.blade.php
-│   │   └── index.blade.php
-│   ├── settings
-│   │   ├── api
-│   │   │   ├── create.blade.php
-│   │   │   └── index.blade.php
-│   │   ├── auth
-│   │   │   ├── social.blade.php
-│   │   │   └── user.blade.php
-│   │   ├── automation
-│   │   │   ├── billing.blade.php
-│   │   │   ├── scheduling.blade.php
-│   │   │   ├── service.blade.php
-│   │   │   └── ticket.blade.php
-│   │   ├── captcha
-│   │   │   ├── placement.blade.php
-│   │   │   └── provider.blade.php
-│   │   ├── currencies
-│   │   │   ├── create.blade.php
-│   │   │   ├── edit.blade.php
-│   │   │   └── index.blade.php
-│   │   ├── general
-│   │   │   ├── company.blade.php
-│   │   │   ├── credit.blade.php
-│   │   │   ├── invoice.blade.php
-│   │   │   ├── misc.blade.php
-│   │   │   ├── ordering.blade.php
-│   │   │   ├── service.blade.php
-│   │   │   ├── social.blade.php
-│   │   │   └── term.blade.php
-│   │   ├── mail
-│   │   │   ├── notification
-│   │   │   │   ├── edit.blade.php
-│   │   │   │   └── index.blade.php
-│   │   │   └── mailer.blade.php
-│   │   ├── punishments
-│   │   │   ├── create.blade.php
-│   │   │   └── index.blade.php
-│   │   ├── roles
-│   │   │   ├── create.blade.php
-│   │   │   ├── edit.blade.php
-│   │   │   └── index.blade.php
-│   │   ├── taxes
-│   │   │   ├── create.blade.php
-│   │   │   ├── edit.blade.php
-│   │   │   └── index.blade.php
-│   │   ├── ticket
-│   │   │   ├── notify.blade.php
-│   │   │   ├── piping.blade.php
-│   │   │   └── ticketing.blade.php
-│   │   └── index.blade.php
-│   ├── tasks
-│   │   └── index.blade.php
-│   ├── themes
-│   │   └── index.blade.php
-│   ├── tickets
-│   │   ├── reply
-│   │   │   └── index.blade.php
-│   │   ├── create.blade.php
-│   │   ├── edit.blade.php
-│   │   └── index.blade.php
-│   ├── transactions
-│   │   ├── create.blade.php
-│   │   └── index.blade.php
-│   ├── users
-│   │   ├── activity
-│   │   │   ├── index.blade.php
-│   │   │   └── show.blade.php
-│   │   ├── create.blade.php
-│   │   ├── credits.blade.php
+theme.json
+vite.config.js
+css
+└── app.css
+js
+├── app.js
+└── editor.js
+views
+├── index.blade.php
+├── audits
+│   ├── index.blade.php
+│   ├── email
 │   │   ├── index.blade.php
-│   │   ├── invoices.blade.php
-│   │   ├── profile.blade.php
-│   │   ├── services.blade.php
-│   │   ├── summary.blade.php
-│   │   └── tickets.blade.php
-│   ├── variants
-│   │   ├── option
-│   │   │   ├── create.blade.php
-│   │   │   ├── edit.blade.php
-│   │   │   └── index.blade.php
+│   │   └── show.blade.php
+│   ├── system
+│   │   ├── index.blade.php
+│   │   └── show.blade.php
+│   └── user
+│       └── index.blade.php
+├── automations
+│   └── index.blade.php
+├── broadcasts
+│   ├── create.blade.php
+│   ├── edit.blade.php
+│   └── index.blade.php
+├── catalogs
+│   ├── create.blade.php
+│   ├── edit.blade.php
+│   └── index.blade.php
+├── components
+│   ├── alert.blade.php
+│   ├── browse.blade.php
+│   ├── checkbox.blade.php
+│   ├── input.blade.php
+│   ├── multiselect.blade.php
+│   ├── select.blade.php
+│   ├── singleselect.blade.php
+│   ├── slider.blade.php
+│   ├── tabs.blade.php
+│   ├── tags.blade.php
+│   ├── textarea.blade.php
+│   ├── toggle.blade.php
+│   ├── editor
+│   │   └── text.blade.php
+│   ├── modal
+│   │   ├── content.blade.php
+│   │   └── trigger.blade.php
+│   ├── radio
+│   │   ├── group.blade.php
+│   │   └── option.blade.php
+│   └── table
+│       └── sorthead.blade.php
+├── coupons
+│   ├── create.blade.php
+│   ├── edit.blade.php
+│   └── index.blade.php
+├── domain-products
+├── domains
+├── gateways
+│   ├── create.blade.php
+│   ├── edit.blade.php
+│   └── index.blade.php
+├── health
+│   └── index.blade.php
+├── invoices
+│   ├── create.blade.php
+│   ├── edit.blade.php
+│   ├── index.blade.php
+│   ├── refund
+│   │   └── index.blade.php
+│   └── transaction
+│       ├── create.blade.php
+│       └── index.blade.php
+├── layouts
+│   ├── app.blade.php
+│   ├── meta.blade.php
+│   ├── script.blade.php
+│   └── partials
+│       ├── footer.blade.php
+│       ├── header.blade.php
+│       ├── pagination.blade.php
+│       └── sidebar.blade.php
+├── livewire
+│   ├── invoices
+│   │   ├── invoice-create.blade.php
+│   │   └── invoice-edit.blade.php
+│   ├── orders
+│   │   └── order-create.blade.php
+│   ├── packages
+│   │   └── package-fields.blade.php
+│   ├── registrants
+│   │   └── registrant-edit.blade.php
+│   ├── services
+│   │   └── service-edit.blade.php
+│   ├── tlds
+│   │   ├── tld-create.blade.php
+│   │   └── tld-edit.blade.php
+│   └── variants
+│       ├── option-create.blade.php
+│       └── option-edit.blade.php
+├── modules
+│   ├── create.blade.php
+│   ├── edit.blade.php
+│   └── index.blade.php
+├── orders
+│   ├── create.blade.php
+│   ├── edit.blade.php
+│   └── index.blade.php
+├── packages
+│   ├── create.blade.php
+│   ├── edit.blade.php
+│   ├── index.blade.php
+│   ├── fields
 │   │   ├── create.blade.php
 │   │   ├── edit.blade.php
 │   │   └── index.blade.php
+│   ├── pricing
+│   │   ├── create.blade.php
+│   │   ├── edit.blade.php
+│   │   └── index.blade.php
+│   ├── provisioning
+│   │   └── index.blade.php
+│   └── scaling
+│       └── index.blade.php
+├── plugins
 │   └── index.blade.php
-├── theme.json
-└── vite.config.js
+├── provisionings
+│   ├── create.blade.php
+│   ├── edit.blade.php
+│   └── index.blade.php
+├── registrants
+│   ├── edit.blade.php
+│   └── index.blade.php
+├── registrars
+│   ├── create.blade.php
+│   ├── edit.blade.php
+│   └── index.blade.php
+├── services
+│   ├── edit.blade.php
+│   ├── index.blade.php
+│   └── cancellations
+│       ├── edit.blade.php
+│       └── index.blade.php
+├── settings
+│   ├── index.blade.php
+│   ├── api
+│   │   ├── create.blade.php
+│   │   └── index.blade.php
+│   ├── auth
+│   │   ├── social.blade.php
+│   │   └── user.blade.php
+│   ├── automation
+│   │   ├── billing.blade.php
+│   │   ├── scheduling.blade.php
+│   │   ├── service.blade.php
+│   │   └── ticket.blade.php
+│   ├── captcha
+│   │   ├── placement.blade.php
+│   │   └── provider.blade.php
+│   ├── currencies
+│   │   ├── create.blade.php
+│   │   ├── edit.blade.php
+│   │   └── index.blade.php
+│   ├── general
+│   │   ├── company.blade.php
+│   │   ├── credit.blade.php
+│   │   ├── domain.blade.php
+│   │   ├── invoice.blade.php
+│   │   ├── misc.blade.php
+│   │   ├── ordering.blade.php
+│   │   ├── service.blade.php
+│   │   ├── social.blade.php
+│   │   └── term.blade.php
+│   ├── mail
+│   │   ├── mailer.blade.php
+│   │   └── notification
+│   │       ├── edit.blade.php
+│   │       └── index.blade.php
+│   ├── punishments
+│   │   ├── create.blade.php
+│   │   └── index.blade.php
+│   ├── roles
+│   │   ├── create.blade.php
+│   │   ├── edit.blade.php
+│   │   └── index.blade.php
+│   ├── taxes
+│   │   ├── create.blade.php
+│   │   ├── edit.blade.php
+│   │   └── index.blade.php
+│   └── ticket
+│       ├── notify.blade.php
+│       ├── piping.blade.php
+│       └── ticketing.blade.php
+├── tasks
+│   └── index.blade.php
+├── themes
+│   └── index.blade.php
+├── tickets
+│   ├── create.blade.php
+│   ├── edit.blade.php
+│   ├── index.blade.php
+│   └── reply
+│       └── index.blade.php
+├── tlds
+│   ├── create.blade.php
+│   ├── edit.blade.php
+│   └── index.blade.php
+├── transactions
+│   ├── create.blade.php
+│   └── index.blade.php
+├── update
+│   ├── index.blade.php
+│   └── progress.blade.php
+├── users
+│   ├── create.blade.php
+│   ├── credits.blade.php
+│   ├── index.blade.php
+│   ├── invoices.blade.php
+│   ├── profile.blade.php
+│   ├── services.blade.php
+│   ├── summary.blade.php
+│   ├── tickets.blade.php
+│   └── activity
+│       ├── index.blade.php
+│       └── show.blade.php
+└── variants
+    ├── create.blade.php
+    ├── edit.blade.php
+    ├── index.blade.php
+    └── option
+        ├── create.blade.php
+        ├── edit.blade.php
+        └── index.blade.php
 ```

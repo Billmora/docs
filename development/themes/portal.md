@@ -81,26 +81,27 @@ Below is an overview of a fully configured Portal theme, taking the core `morain
 
 ```text
 /resources/themes/portal/moraine/
-├── css
-│   └── app.css
-├── js
-│   └── app.js
-├── views
-│   ├── components
-│   │   ├── input.blade.php
-│   │   └── textarea.blade.php
-│   ├── layouts
-│   │   ├── partials
-│   │   │   ├── footer.blade.php
-│   │   │   └── header.blade.php
-│   │   ├── app.blade.php
-│   │   ├── meta.blade.php
-│   │   └── script.blade.php
-│   ├── terms
-│   │   ├── condition.blade.php
-│   │   ├── privacy.blade.php
-│   │   └── service.blade.php
-│   └── index.blade.php
-├── theme.json
-└── vite.config.js
+config.blade.php
+theme.json
+vite.config.js
+css
+└── app.css
+js
+└── app.js
+views
+├── index.blade.php
+├── components
+│   ├── input.blade.php
+│   └── textarea.blade.php
+├── layouts
+│   ├── app.blade.php
+│   ├── meta.blade.php
+│   ├── script.blade.php
+│   └── partials
+│       ├── footer.blade.php
+│       └── header.blade.php
+└── terms
+    ├── condition.blade.php
+    ├── privacy.blade.php
+    └── service.blade.php
 ```
