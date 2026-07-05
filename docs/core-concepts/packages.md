@@ -27,6 +27,7 @@ When you create or edit a Package, there are several key tabs you must configure
 | **Allow Cancellation** | Enable to let customers request service cancellation for this package. |
 | **Allow Quantity** | Enable to let customers purchase multiple or single quantities of this package. |
 | **Prorata Billing Day** | Set a specific day of the month (1–28) to enable prorata billing for this package. Leave empty to disable prorata billing. |
+| **Charge Next Month** | Set a specific day of the month (1–28) as the threshold. If a client orders on or after this day, their initial invoice will include the prorata amount plus the full cycle for the next month. Leave empty to only charge the prorata amount. |
 | **Auto Provisioning** | Enable to automatically run provisioning and activate the service upon invoice payment. If disabled, admins must manually trigger provisioning. |
 | **Status** | Set the status of the package to visible or hidden. |
 
