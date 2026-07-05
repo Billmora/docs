@@ -50,7 +50,7 @@ Most modern control panels include an in-browser Terminal. Open it and run the f
    ```
 
 > [!TIP]
-> Depending on your web host, you might need to use the full path to PHP inside your terminal, for example: `/usr/local/bin/php artisan migrate --force` or `/opt/cpanel/ea-php82/root/usr/bin/php artisan migrate --force`.
+> Depending on your web host, you might need to use the full path to PHP inside your terminal, for example: `/usr/local/bin/php artisan migrate --force` or `/opt/cpanel/ea-php83/root/usr/bin/php artisan migrate --force`.
 
 ### Without Terminal Access
 

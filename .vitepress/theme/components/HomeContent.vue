@@ -32,7 +32,7 @@ const faqs = [
   },
   {
     question: 'What are the server requirements?',
-    answer: 'Billmora runs on PHP 8.2+, Laravel 11, MySQL/MariaDB, and Node.js (for asset building). A standard VPS or shared hosting environment is sufficient.',
+    answer: 'Billmora runs on PHP 8.3+, Laravel 12, MySQL/MariaDB, and Node.js (for asset building). A standard VPS or shared hosting environment is sufficient.',
   },
   {
     question: 'Does Billmora support multiple payment gateways?',
