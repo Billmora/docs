@@ -1861,6 +1861,14 @@
                                         "minimum": 0,
                                         "maximum": 31
                                     },
+                                    "prorata_next_month_day": {
+                                        "type": [
+                                            "integer",
+                                            "null"
+                                        ],
+                                        "minimum": 0,
+                                        "maximum": 31
+                                    },
                                     "auto_provision": {
                                         "type": [
                                             "boolean",
@@ -2058,6 +2066,14 @@
                                         ]
                                     },
                                     "prorata_day": {
+                                        "type": [
+                                            "integer",
+                                            "null"
+                                        ],
+                                        "minimum": 0,
+                                        "maximum": 31
+                                    },
+                                    "prorata_next_month_day": {
                                         "type": [
                                             "integer",
                                             "null"
@@ -5018,6 +5034,12 @@
                             "null"
                         ]
                     },
+                    "prorata_next_month_day": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ]
+                    },
                     "auto_provision": {
                         "type": "boolean"
                     },
@@ -5079,6 +5101,7 @@
                     "allow_cancellation",
                     "allow_quantity",
                     "prorata_day",
+                    "prorata_next_month_day",
                     "auto_provision",
                     "sort_order",
                     "plugin_id",
