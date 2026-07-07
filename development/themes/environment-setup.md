@@ -129,8 +129,8 @@ npm install
 
 With your environment set up, you are ready to start building. Refer to the specific theme guide for your target area:
 
-- [Admin Theme](../admin) — Back-office dashboard and management interfaces.
-- [Client Theme](../client) — Client-facing portal and service management.
-- [Portal Theme](../portal) — Public-facing storefront and checkout flow.
+- [Admin Theme](../admin) — The core dashboard, settings, and management interfaces for staff.
+- [Client Theme](../client) — The main hub where customers register, purchase products, view invoices, and manage their services.
+- [Portal Theme](../portal) — The public-facing landing environment for guest users, announcements, and company terms.
 
 For details on the Vite configuration used by all themes, see the [Vite Config Reference](./vite-config).
