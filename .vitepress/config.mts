@@ -147,6 +147,7 @@ export default defineConfig({
         {
           text: 'Themes',
           items: [
+            { text: 'Environment Setup', link: '/development/themes/environment-setup' },
             {
               text: 'Reference',
               collapsed: true,
