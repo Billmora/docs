@@ -12,10 +12,10 @@ Before you can develop or compile a Billmora theme, you need **Node.js** and **n
 
 ## Required Versions
 
-| Tool | Minimum Version | Recommended |
-|------|----------------|-------------|
-| **Node.js** | 18.x (LTS) | 22.x (LTS) |
-| **npm** | 9.x | bundled with Node.js |
+| Tool        | Minimum Version | Recommended          |
+| ----------- | --------------- | -------------------- |
+| **Node.js** | 18.x (LTS)      | 22.x (LTS)           |
+| **npm**     | 9.x             | bundled with Node.js |
 
 ---
 
@@ -37,6 +37,7 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 > Always check the [latest release on GitHub](https://github.com/nvm-sh/nvm/releases/latest) and replace the version number in the URL above with the newest one available.
 
 **2. Reload your shell:**
+
 ```bash
 source ~/.bashrc
 # or if you use zsh:
@@ -44,12 +45,14 @@ source ~/.zshrc
 ```
 
 **3. Install the latest LTS version of Node.js:**
+
 ```bash
 nvm install --lts
 nvm use --lts
 ```
 
 **4. Verify the installation:**
+
 ```bash
 node -v
 npm -v
@@ -129,8 +132,8 @@ npm install
 
 With your environment set up, you are ready to start building. Refer to the specific theme guide for your target area:
 
-- [Admin Theme](../admin) — The core dashboard, settings, and management interfaces for staff.
-- [Client Theme](../client) — The main hub where customers register, purchase products, view invoices, and manage their services.
-- [Portal Theme](../portal) — The public-facing landing environment for guest users, announcements, and company terms.
+- [Admin Theme](../themes/admin) — The core dashboard, settings, and management interfaces for staff.
+- [Client Theme](../themes/client) — The main hub where customers register, purchase products, view invoices, and manage their services.
+- [Portal Theme](../themes/portal) — The public-facing landing environment for guest users, announcements, and company terms.
 
-For details on the Vite configuration used by all themes, see the [Vite Config Reference](./vite-config).
+For details on the Vite configuration used by all themes, see the [Vite Config Reference](./reference/vite-config).
