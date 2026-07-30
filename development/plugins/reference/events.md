@@ -1,6 +1,6 @@
 # Event Reference
 
-Billmora core engine dispatches events at key moments throughout the application lifecycle. Module plugins can subscribe to these events via `getSubscribedEvents()` to react in real-time — without modifying any core code.
+Billmora core engine dispatches events at key moments throughout the application lifecycle. **All plugin types** (Module, Provisioning, Gateway, Registrar) can subscribe to these events via `getSubscribedEvents()` to react in real-time — without modifying any core code.
 
 Each event is a simple PHP class with **public readonly properties** that expose the relevant Eloquent model(s).
 
@@ -8,7 +8,7 @@ Each event is a simple PHP class with **public readonly properties** that expose
 
 ## How to Subscribe
 
-In your module main class, map event classes to handler methods:
+In your plugin main class (any type: Module, Provisioning, Gateway, or Registrar), map event classes to handler methods:
 
 ```php
 public function getSubscribedEvents(): array
@@ -24,6 +24,10 @@ public function onInvoicePaid(\App\Events\Invoice\Paid $event): void
     // React to the event...
 }
 ```
+
+::: tip Shared Capability
+This feature works for all plugin types. See [**Plugin Capabilities Reference → Event Subscription**](./capabilities.md#_6-event-subscription-getsubscribedevents) for practical use case examples per plugin type.
+:::
 
 ---
 

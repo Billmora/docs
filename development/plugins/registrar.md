@@ -541,7 +541,7 @@ private function url(string $path): string
 If your registrar plugin requires its own database tables, place migrations in `database/migrations/`. All tables **must** use the `pr_` prefix.
 
 ::: tip
-See the [**Plugin Conventions & Standards**](./reference/conventions.md#_4-database-migrations) guide for full details on table prefixes, migration naming, and model configuration.
+See the [**Plugin Conventions**](./reference/conventions.md#_4-database-migrations) guide for full details on table prefixes, migration naming, and model configuration.
 :::
 
 ---
@@ -591,3 +591,5 @@ public function validateBeforeCart(string $domain, string $type, ?string $eppCod
 ## 15. Conclusion
 
 By implementing the `RegistrarInterface` methods and letting Billmora core engine handle the billing, invoicing, and customer management, you can build powerful domain registration integrations with minimal boilerplate. Your plugin only needs to focus on speaking to the registrar API — Billmora takes care of the rest!
+
+For all capabilities shared across plugin types (navigation, permissions, events, custom routes, `setup()` hook, etc.), see the [**Plugin Capabilities Reference**](./reference/capabilities.md).

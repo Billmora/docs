@@ -762,7 +762,7 @@ Ensure that the **Variant Code** in Billmora matches the key name used in your `
 If your provisioning plugin requires its own database tables, place migrations in `database/migrations/`. All tables **must** use the `pp_` prefix.
 
 ::: tip
-See the [**Plugin Conventions & Standards**](./reference/conventions.md#_4-database-migrations) guide for full details on table prefixes, migration naming, and model configuration.
+See the [**Plugin Conventions**](./reference/conventions.md#_4-database-migrations) guide for full details on table prefixes, migration naming, and model configuration.
 :::
 
 ---

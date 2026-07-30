@@ -281,7 +281,9 @@ Replace `{name}` with your plugin's provider slug (e.g., `Stripe`, `Pterodactyl`
 
 ## Conclusion
 
-Following these conventions ensures your plugin integrates seamlessly with Billmora core engine. For type-specific implementation details, refer to:
+Following these conventions ensures your plugin integrates seamlessly with Billmora core engine. For **capabilities shared by all plugin types** (Navigation, Events, Permissions, Custom Routes, etc.), see the [**Plugin Capabilities Reference**](./capabilities.md) guide.
+
+For type-specific implementation details, refer to:
 
 - [**Gateway Plugin Development**](./../gateway.md)
 - [**Provisioning Plugin Development**](./../provisioning.md)

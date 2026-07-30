@@ -136,6 +136,7 @@ export default defineConfig({
                 { text: 'Conventions', link: '/development/plugins/reference/conventions' },
                 { text: 'Schema', link: '/development/plugins/reference/schema' },
                 { text: 'Events', link: '/development/plugins/reference/events' },
+                { text: 'Capabilities', link: '/development/plugins/reference/capabilities' },
               ]
             },
             { text: 'Gateway', link: '/development/plugins/gateway' },

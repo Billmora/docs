@@ -414,7 +414,7 @@ These two flags serve different purposes:
 If your gateway plugin requires its own database tables, place migrations in `database/migrations/`. All tables **must** use the `pg_` prefix.
 
 ::: tip
-See the [**Plugin Conventions & Standards**](./reference/conventions.md#_4-database-migrations) guide for full details on table prefixes, migration naming, and model configuration.
+See the [**Plugin Conventions**](./reference/conventions.md#_4-database-migrations) guide for full details on table prefixes, migration naming, and model configuration.
 :::
 
 ---
@@ -422,3 +422,5 @@ See the [**Plugin Conventions & Standards**](./reference/conventions.md#_4-datab
 ## Conclusion
 
 By simply defining `getConfigSchema()`, initiating the session in `pay()`, and mapping incoming responses to the `GatewayCallbackResponse` inside `webhook()` and `return()`, you can build powerfully robust integrations. Billmora's core engine will handle all logging, security, and database state transitions for you!
+
+For all capabilities shared across plugin types (navigation, permissions, events, custom routes, `setup()` hook, etc.), see the [**Plugin Capabilities Reference**](./reference/capabilities.md).
